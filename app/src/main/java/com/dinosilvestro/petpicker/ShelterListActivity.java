@@ -16,20 +16,18 @@ public class ShelterListActivity extends AppCompatActivity {
 
     @BindView(R.id.shelterRecyclerView)
     RecyclerView mRecyclerView;
-    private ShelterParcel[] mShelters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelters);
-
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.GET_SHELTERS);
-        mShelters = Arrays.copyOf(parcelables, parcelables.length, ShelterParcel[].class);
+        Parcelable[] parcelables = intent.getParcelableArrayExtra(Keys.GET_SHELTERS);
+        ShelterParcel[] shelters = Arrays.copyOf(parcelables, parcelables.length, ShelterParcel[].class);
 
-        ShelterAdapter adapter = new ShelterAdapter(this, mShelters);
+        ShelterAdapter adapter = new ShelterAdapter(this, shelters);
         mRecyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

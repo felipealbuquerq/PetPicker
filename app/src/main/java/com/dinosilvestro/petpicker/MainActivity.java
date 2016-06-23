@@ -25,7 +25,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String GET_SHELTERS = "GET_SHELTERS";
+
     private static final String TAG = MainActivity.class.getSimpleName();
     final String mTempZip = "32816";
     Button mButton;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
-                intent.putExtra(GET_SHELTERS, mFetchData.getShelters());
+                intent.putExtra(Keys.GET_SHELTERS, mFetchData.getShelters());
                 startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void getShelterData(String zip) {
         String completeUrl =
                 "http://api.petfinder.com/shelter.find?key="
-                        + ApiKey.apiKey
+                        + Keys.apiKey
                         + "&location="
                         + zip
                         + "&format=json";
@@ -105,10 +105,13 @@ public class MainActivity extends AppCompatActivity {
             ShelterParcel newShelterParcel = new ShelterParcel();
             newShelterParcel.setId(jsonShelter.getString("id"));
             newShelterParcel.setName(jsonShelter.getString("name"));
-            Log.i(TAG, "From JSON: " + newShelterParcel.getId());
-
+            newShelterParcel.setPhone(jsonShelter.getString("phone"));
+            newShelterParcel.setEmail(jsonShelter.getString("email"));
+            newShelterParcel.setAddress(jsonShelter.getString("address1"));
+            newShelterParcel.setCity(jsonShelter.getString("city"));
+            newShelterParcel.setState(jsonShelter.getString("state"));
+            newShelterParcel.setZip(jsonShelter.getString("zip"));
             shelterParcel[i] = newShelterParcel;
-
         }
 
         return shelterParcel;

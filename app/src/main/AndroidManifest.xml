@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShelterListActivity"/>
+        <activity android:name=".ShelterDetailActivity">
+        </activity>
     </application>
 
 </manifest>

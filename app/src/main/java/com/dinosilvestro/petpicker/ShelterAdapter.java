@@ -1,6 +1,7 @@
 package com.dinosilvestro.petpicker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
     public ShelterAdapter(Context context, ShelterParcel[] shelters) {
         mContext = context;
         mShelters = shelters;
-
     }
 
     @Override
@@ -37,22 +37,49 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
 
     public class ShelterAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView mShelterTextView;
+        private TextView mShelterTextView;
+        private String mName;
+        private String mPhone;
+        private String mEmail;
+        private String mAddress;
+        private String mCity;
+        private String mState;
+        private String mZip;
 
         public ShelterAdapterViewHolder(View itemView) {
             super(itemView);
-
             mShelterTextView = (TextView) itemView.findViewById(R.id.shelterTextView);
-
             itemView.setOnClickListener(this);
         }
 
         public void bindShelter(ShelterParcel shelters) {
             mShelterTextView.setText(trimShelterName(shelters));
+
+            mName = trimEverythingElse(shelters.getName());
+            mPhone = trimEverythingElse(shelters.getPhone());
+            mEmail = trimEverythingElse(shelters.getEmail());
+            mAddress = trimEverythingElse(shelters.getAddress());
+            mCity = trimEverythingElse(shelters.getCity());
+            mState = trimEverythingElse(shelters.getState());
+            mZip = trimEverythingElse(shelters.getZip());
+        }
+
+        private String trimEverythingElse(String string) {
+            String name = string.replace("{\"$t\":\"", "");
+            return name.replace("\"}", "");
         }
 
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent(mContext, ShelterDetailActivity.class);
+            intent.putExtra(Keys.NAME, mName);
+            intent.putExtra(Keys.PHONE, mPhone);
+            intent.putExtra(Keys.EMAIL, mEmail);
+            intent.putExtra(Keys.ADDRESS, mAddress);
+            intent.putExtra(Keys.CITY, mCity);
+            intent.putExtra(Keys.STATE, mState);
+            intent.putExtra(Keys.ZIP, mZip);
+            mContext.startActivity(intent);
         }
 
         public String trimShelterName(ShelterParcel shelters) {
