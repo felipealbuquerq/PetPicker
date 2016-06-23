@@ -3,25 +3,25 @@ package com.dinosilvestro.petpicker;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Shelters implements Parcelable {
-    public static final Creator<Shelters> CREATOR = new Creator<Shelters>() {
+public class ShelterParcel implements Parcelable {
+    public static final Creator<ShelterParcel> CREATOR = new Creator<ShelterParcel>() {
         @Override
-        public Shelters createFromParcel(Parcel in) {
-            return new Shelters(in);
+        public ShelterParcel createFromParcel(Parcel in) {
+            return new ShelterParcel(in);
         }
 
         @Override
-        public Shelters[] newArray(int size) {
-            return new Shelters[size];
+        public ShelterParcel[] newArray(int size) {
+            return new ShelterParcel[size];
         }
     };
     private String mId;
     private String mName;
 
-    public Shelters() {
+    public ShelterParcel() {
     }
 
-    protected Shelters(Parcel in) {
+    protected ShelterParcel(Parcel in) {
         mId = in.readString();
         mName = in.readString();
     }
@@ -41,7 +41,6 @@ public class Shelters implements Parcelable {
     public void setName(String name) {
         mName = name;
     }
-
 
     @Override
     public int describeContents() {
