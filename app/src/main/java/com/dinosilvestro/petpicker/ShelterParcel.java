@@ -15,6 +15,7 @@ public class ShelterParcel implements Parcelable {
             return new ShelterParcel[size];
         }
     };
+    private static ShelterParcel[] mShelters;
     private String mId;
     private String mName;
     private String mPhone;
@@ -36,6 +37,14 @@ public class ShelterParcel implements Parcelable {
         mCity = in.readString();
         mState = in.readString();
         mZip = in.readString();
+    }
+
+    public static ShelterParcel[] getShelters() {
+        return mShelters;
+    }
+
+    public void setShelters(ShelterParcel[] shelters) {
+        mShelters = shelters;
     }
 
     public String getId() {
