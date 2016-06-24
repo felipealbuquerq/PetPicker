@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pet Picker</string>
+    <string name="network_unavailable_toast">Network is unavailable. Please try again later.</string>
 </resources>

@@ -10,20 +10,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     final String mTempZip = "32816";
+
+    @BindView(R.id.temporaryButton)
     Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        FetchData.getShelterData(mTempZip);
-
-        mButton = (Button) findViewById(R.id.temporaryButton);
         if (isNetworkAvailable()) {
+            FetchData.getShelterData(mTempZip);
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -33,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(MainActivity.this,
-                    "Network is unavailable. Unable to retrieve shelters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.network_unavailable_toast,
+                    Toast.LENGTH_LONG).show();
         }
     }
 
