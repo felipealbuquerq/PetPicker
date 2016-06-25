@@ -3,7 +3,6 @@ package com.dinosilvestro.petpicker;
 public class Keys {
     public static final String apiKey = ""; //Please place your Pet Finder Api Key here
 
-
     // Keys for shelter information
     public static final String GET_SHELTERS = "GET_SHELTERS";
     public static final String SHELTER_ID = "SHELTER_ID";
@@ -17,4 +16,15 @@ public class Keys {
 
     // Keys for pet information
     public static final String GET_PETS = "GET_PETS";
+    public static final String PET_ID = "PET_ID";
+    public static final String PET_NAME = "PET_NAME";
+    public static final String PET_STATUS = "PET_STATUS";
+    public static final String PET_SEX = "PET_SEX";
+    public static final String PET_SIZE = "PET_SIZE";
+    public static final String PET_AGE = "PET_AGE";
+    public static final String PET_ANIMAL = "PET_ANIMAL";
+    public static final String PET_DESCRIPTION = "PET_DESCRIPTION";
+    public static final String PET_MEDIA = "PET_MEDIA";
+
+    public static final String NEW_SHELTER_NAME = "NEW_SHELTER_NAME";
 }

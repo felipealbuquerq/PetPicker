@@ -34,5 +34,8 @@ public class PetGridActivity extends AppCompatActivity {
         mPetRecyclerView.setLayoutManager(layoutManager);
 
         mPetRecyclerView.setHasFixedSize(true);
+
+        String shelterName = intent.getStringExtra(Keys.NEW_SHELTER_NAME);
+        setTitle(shelterName);
     }
 }

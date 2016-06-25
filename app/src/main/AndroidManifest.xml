@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".PetGridActivity">
         </activity>
+        <activity android:name=".PetDetailActivity">
+        </activity>
     </application>
 
 </manifest>

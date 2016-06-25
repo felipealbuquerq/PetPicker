@@ -2,4 +2,5 @@
     <string name="app_name">Pet Picker</string>
     <string name="network_unavailable_toast">Network is unavailable. Please try again later.</string>
     <string name="pet_grid_image_description">Image of pet</string>
+    <string name="pet_detail_image_description">Large photo of pet</string>
 </resources>

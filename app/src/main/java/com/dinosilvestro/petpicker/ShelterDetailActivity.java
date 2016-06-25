@@ -30,6 +30,8 @@ public class ShelterDetailActivity extends AppCompatActivity {
     @BindView(R.id.getPetsButton)
     Button mGetPetsButton;
 
+    private String mNewShelterName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class ShelterDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = this.getIntent();
+
         if (intent != null) {
 
             mShelterId = intent.getStringExtra(Keys.SHELTER_ID);
@@ -45,6 +48,8 @@ public class ShelterDetailActivity extends AppCompatActivity {
             if (!name.contains("{}")) { // Check to make sure this field is not empty
                 setTitle(name);
             }
+
+            mNewShelterName = name;
 
             String phone = intent.getStringExtra(Keys.SHELTER_PHONE);
             if (!phone.contains("{}")) { // Check to make sure this field is not empty
@@ -84,6 +89,7 @@ public class ShelterDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PetGridActivity.class);
                 intent.putExtra(Keys.GET_PETS, PetParcel.getPets());
+                intent.putExtra(Keys.NEW_SHELTER_NAME, mNewShelterName);
                 startActivity(intent);
             }
         });

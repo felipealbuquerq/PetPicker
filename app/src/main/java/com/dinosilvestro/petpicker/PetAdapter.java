@@ -1,6 +1,7 @@
 package com.dinosilvestro.petpicker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
     public class PetAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mPetGridImageView;
+        private String mId;
+        private String mName;
+        private String mStatus;
+        private String mSex;
+        private String mSize;
+        private String mAge;
+        private String mAnimal;
+        private String mDescription;
+        private String mMedia;
 
         public PetAdapterViewHolder(View itemView) {
             super(itemView);
@@ -50,6 +60,16 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
             Picasso.with(mContext)
                     .load(petParcel.getMedia())
                     .into(mPetGridImageView);
+
+            mId = trimEverythingElse(petParcel.getId());
+            mName = trimEverythingElse(petParcel.getName());
+            mStatus = trimEverythingElse(petParcel.getStatus());
+            mSex = trimEverythingElse(petParcel.getSex());
+            mSize = trimEverythingElse(petParcel.getSize());
+            mAge = trimEverythingElse(petParcel.getAge());
+            mAnimal = trimEverythingElse(petParcel.getAnimal());
+            mDescription = trimEverythingElse(petParcel.getDescription());
+            mMedia = petParcel.getMedia();
         }
 
         private String trimEverythingElse(String string) {
@@ -59,6 +79,17 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
 
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent(mContext, PetDetailActivity.class);
+            intent.putExtra(Keys.PET_ID, mId);
+            intent.putExtra(Keys.PET_NAME, mName);
+            intent.putExtra(Keys.PET_STATUS, mStatus);
+            intent.putExtra(Keys.PET_SEX, mSex);
+            intent.putExtra(Keys.PET_SIZE, mSize);
+            intent.putExtra(Keys.PET_AGE, mAge);
+            intent.putExtra(Keys.PET_ANIMAL, mAnimal);
+            intent.putExtra(Keys.PET_DESCRIPTION, mDescription);
+            intent.putExtra(Keys.PET_MEDIA, mMedia);
+            mContext.startActivity(intent);
         }
 
         public String trimShelterName(ShelterParcel shelters) {
