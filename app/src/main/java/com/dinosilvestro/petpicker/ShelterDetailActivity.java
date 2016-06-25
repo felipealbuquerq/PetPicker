@@ -12,7 +12,9 @@ import butterknife.ButterKnife;
 
 public class ShelterDetailActivity extends AppCompatActivity {
 
-    final String mTempShelterId = "FL533";
+    // ID of shelter to get pets from
+    String mShelterId;
+
     @BindView(R.id.phoneTextView)
     TextView mPhoneTextView;
     @BindView(R.id.emailTextView)
@@ -34,11 +36,10 @@ public class ShelterDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shelter_detail);
         ButterKnife.bind(this);
 
-
-        FetchData.getPetData(mTempShelterId);
-
         Intent intent = this.getIntent();
         if (intent != null) {
+
+            mShelterId = intent.getStringExtra(Keys.SHELTER_ID);
 
             String name = intent.getStringExtra(Keys.SHELTER_NAME);
             if (!name.contains("{}")) { // Check to make sure this field is not empty
@@ -75,6 +76,8 @@ public class ShelterDetailActivity extends AppCompatActivity {
                 mZipTextView.setText(String.format("Zip: %s", zip));
             }
         }
+
+        FetchData.getPetData(mShelterId);
 
         mGetPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override

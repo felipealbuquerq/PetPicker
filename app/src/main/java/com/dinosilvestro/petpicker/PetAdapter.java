@@ -47,10 +47,8 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
         }
 
         public void bindPet(PetParcel petParcel) {
-            //mPetGridImageView.setText(trimShelterName(shelters));
-
             Picasso.with(mContext)
-                    .load(petParcel.getMedia()) //Check this later
+                    .load(petParcel.getMedia())
                     .into(mPetGridImageView);
         }
 

@@ -38,6 +38,7 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
     public class ShelterAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mShelterTextView;
+        private String mId;
         private String mName;
         private String mPhone;
         private String mEmail;
@@ -54,7 +55,7 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
 
         public void bindShelter(ShelterParcel shelters) {
             mShelterTextView.setText(trimShelterName(shelters));
-
+            mId = trimEverythingElse(shelters.getId());
             mName = trimEverythingElse(shelters.getName());
             mPhone = trimEverythingElse(shelters.getPhone());
             mEmail = trimEverythingElse(shelters.getEmail());
@@ -72,6 +73,7 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(mContext, ShelterDetailActivity.class);
+            intent.putExtra(Keys.SHELTER_ID, mId);
             intent.putExtra(Keys.SHELTER_NAME, mName);
             intent.putExtra(Keys.SHELTER_PHONE, mPhone);
             intent.putExtra(Keys.SHELTER_EMAIL, mEmail);
