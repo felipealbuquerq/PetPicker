@@ -42,9 +42,46 @@ public class FetchData {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
+                    // Log.v(TAG, jsonData);
                     if (response.isSuccessful()) {
                         fetchShelters(jsonData);
+                    } else {
+                        //alertUserAboutError();
+                    }
+                } catch (IOException | JSONException e) {
+                    Log.e(TAG, "Exception caught: ", e);
+                }
+            }
+        });
+    }
+
+    public static void getPetData(String shelterId) {
+        String getPetsUrl =
+                "http://api.petfinder.com/shelter.getPets?key="
+                        + Keys.apiKey
+                        + "&id="
+                        + shelterId
+                        + "&format=json";
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(getPetsUrl)
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonData = response.body().string();
+                    Log.v(TAG, jsonData);
+                    if (response.isSuccessful()) {
+                        fetchPets(jsonData);
                     } else {
                         //alertUserAboutError();
                     }
@@ -80,10 +117,50 @@ public class FetchData {
         return shelterParcel;
     }
 
+    public static PetParcel[] getPets(String jsonData) throws JSONException {
+        JSONObject petData = new JSONObject(jsonData);
+        JSONObject petFinder = petData.getJSONObject("petfinder");
+        JSONObject pets = petFinder.getJSONObject("pets");
+        JSONArray pet = pets.getJSONArray("pet");
+
+        PetParcel[] petParcel = new PetParcel[pet.length()];
+
+        for (int i = 0; i < pet.length(); i++) {
+            JSONObject jsonPet = pet.getJSONObject(i);
+            PetParcel newPetParcel = new PetParcel();
+            newPetParcel.setId(jsonPet.getString("id"));
+            newPetParcel.setName(jsonPet.getString("name"));
+            newPetParcel.setStatus(jsonPet.getString("status"));
+            newPetParcel.setSex(jsonPet.getString("sex"));
+            newPetParcel.setSize(jsonPet.getString("size"));
+            newPetParcel.setAge(jsonPet.getString("age"));
+            newPetParcel.setAnimal(jsonPet.getString("animal"));
+            newPetParcel.setDescription(jsonPet.getString("description"));
+
+            JSONObject media = jsonPet.getJSONObject("media");
+            JSONObject photos = media.getJSONObject("photos");
+            JSONArray photo = photos.getJSONArray("photo");
+
+            for (int index = 0; index < photo.length(); index++) {
+                JSONObject jsonMedia = photo.getJSONObject(2); //large full body pic
+                newPetParcel.setMedia(jsonMedia.getString("$t"));
+            }
+
+            petParcel[i] = newPetParcel;
+        }
+        return petParcel;
+    }
+
 
     public static ShelterParcel fetchShelters(String jsonData) throws JSONException {
         ShelterParcel shelterParcel = new ShelterParcel();
         shelterParcel.setShelters(getShelters(jsonData));
         return shelterParcel;
+    }
+
+    public static PetParcel fetchPets(String jsonData) throws JSONException {
+        PetParcel petParcel = new PetParcel();
+        petParcel.setPets(getPets(jsonData));
+        return petParcel;
     }
 }

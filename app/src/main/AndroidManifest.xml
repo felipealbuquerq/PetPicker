@@ -21,6 +21,8 @@
         <activity android:name=".ShelterListActivity"/>
         <activity android:name=".ShelterDetailActivity">
         </activity>
+        <activity android:name=".PetGridActivity">
+        </activity>
     </application>
 
 </manifest>

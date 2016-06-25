@@ -12,4 +12,6 @@ public class Keys {
     public static final String CITY = "CITY";
     public static final String STATE = "STATE";
     public static final String ZIP = "ZIP";
+
+    public static final String GET_PETS = "GET_PETS";
 }

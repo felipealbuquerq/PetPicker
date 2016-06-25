@@ -41,4 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/getPetsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET PETS"/>
+
 </LinearLayout>
