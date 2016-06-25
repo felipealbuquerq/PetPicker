@@ -4,14 +4,14 @@ public class Keys {
     public static final String apiKey = ""; //Please place your Pet Finder Api Key here
 
     public static final String GET_SHELTERS = "GET_SHELTERS";
-    public static final String ID = "ID";
-    public static final String NAME = "NAME";
-    public static final String PHONE = "PHONE";
-    public static final String EMAIL = "EMAIL";
-    public static final String ADDRESS = "ADDRESS";
-    public static final String CITY = "CITY";
-    public static final String STATE = "STATE";
-    public static final String ZIP = "ZIP";
+    public static final String SHELTER_ID = "SHELTER_ID";
+    public static final String SHELTER_NAME = "SHELTER_NAME";
+    public static final String SHELTER_PHONE = "SHELTER_PHONE";
+    public static final String SHELTER_EMAIL = "SHELTER_EMAIL";
+    public static final String SHELTER_ADDRESS = "SHELTER_ADDRESS";
+    public static final String SHELTER_CITY = "SHELTER_CITY";
+    public static final String SHELTER_STATE = "SHELTER_STATE";
+    public static final String SHELTER_ZIP = "SHELTER_ZIP";
 
     public static final String GET_PETS = "GET_PETS";
 }

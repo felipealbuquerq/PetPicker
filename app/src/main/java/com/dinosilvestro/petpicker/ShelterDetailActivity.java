@@ -40,37 +40,37 @@ public class ShelterDetailActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         if (intent != null) {
 
-            String name = intent.getStringExtra(Keys.NAME);
+            String name = intent.getStringExtra(Keys.SHELTER_NAME);
             if (!name.contains("{}")) { // Check to make sure this field is not empty
                 setTitle(name);
             }
 
-            String phone = intent.getStringExtra(Keys.PHONE);
+            String phone = intent.getStringExtra(Keys.SHELTER_PHONE);
             if (!phone.contains("{}")) { // Check to make sure this field is not empty
                 mPhoneTextView.setText(String.format("Phone: %s", phone));
             }
 
-            String email = intent.getStringExtra(Keys.EMAIL);
+            String email = intent.getStringExtra(Keys.SHELTER_EMAIL);
             if (!email.contains("{}")) { // Check to make sure this field is not empty
                 mEmailTextView.setText(String.format("Email: %s", email));
             }
 
-            String address = intent.getStringExtra(Keys.ADDRESS);
+            String address = intent.getStringExtra(Keys.SHELTER_ADDRESS);
             if (!address.contains("{}")) { // Check to make sure this field is not empty
                 mAddressTextView.setText(String.format("Address: %s", address));
             }
 
-            String city = intent.getStringExtra(Keys.CITY);
+            String city = intent.getStringExtra(Keys.SHELTER_CITY);
             if (!city.contains("{}")) { // Check to make sure this field is not empty
                 mCityTextView.setText(String.format("City: %s", city));
             }
 
-            String state = intent.getStringExtra(Keys.STATE);
+            String state = intent.getStringExtra(Keys.SHELTER_STATE);
             if (!state.contains("{}")) { // Check to make sure this field is not empty
                 mStateTextView.setText(String.format("State: %s", state));
             }
 
-            String zip = intent.getStringExtra(Keys.ZIP);
+            String zip = intent.getStringExtra(Keys.SHELTER_ZIP);
             if (!zip.contains("{}")) { // Check to make sure this field is not empty
                 mZipTextView.setText(String.format("Zip: %s", zip));
             }

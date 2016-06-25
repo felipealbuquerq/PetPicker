@@ -72,13 +72,13 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(mContext, ShelterDetailActivity.class);
-            intent.putExtra(Keys.NAME, mName);
-            intent.putExtra(Keys.PHONE, mPhone);
-            intent.putExtra(Keys.EMAIL, mEmail);
-            intent.putExtra(Keys.ADDRESS, mAddress);
-            intent.putExtra(Keys.CITY, mCity);
-            intent.putExtra(Keys.STATE, mState);
-            intent.putExtra(Keys.ZIP, mZip);
+            intent.putExtra(Keys.SHELTER_NAME, mName);
+            intent.putExtra(Keys.SHELTER_PHONE, mPhone);
+            intent.putExtra(Keys.SHELTER_EMAIL, mEmail);
+            intent.putExtra(Keys.SHELTER_ADDRESS, mAddress);
+            intent.putExtra(Keys.SHELTER_CITY, mCity);
+            intent.putExtra(Keys.SHELTER_STATE, mState);
+            intent.putExtra(Keys.SHELTER_ZIP, mZip);
             mContext.startActivity(intent);
         }
 

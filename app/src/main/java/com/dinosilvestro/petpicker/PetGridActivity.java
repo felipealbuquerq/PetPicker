@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class PetGridActivity extends AppCompatActivity {
         PetAdapter adapter = new PetAdapter(this, petParcels);
         mPetRecyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         mPetRecyclerView.setLayoutManager(layoutManager);
 
         mPetRecyclerView.setHasFixedSize(true);
