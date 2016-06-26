@@ -3,4 +3,8 @@
     <string name="network_unavailable_toast">Network is unavailable. Please try again later.</string>
     <string name="pet_grid_image_description">Image of pet</string>
     <string name="pet_detail_image_description">Large photo of pet</string>
+    <string name="petfinder_tribute_text">powered by Petfinder</string>
+    <string name="enter_a_zip_code_text">Enter a zip code</string>
+    <string name="or_text">or</string>
+    <string name="find_nearby_shelters_text">Find nearby shelters</string>
 </resources>

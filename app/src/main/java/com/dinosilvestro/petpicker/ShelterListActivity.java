@@ -34,5 +34,8 @@ public class ShelterListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
+
+        // Set title of actionbar to the zip code passed in
+        //setTitle("Shelters near: " + );
     }
 }

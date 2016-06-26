@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -17,12 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     final String mTempZip = "32816";
 
-    @BindView(R.id.temporaryButton)
+    @BindView(R.id.getSheltersButton)
     Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.network_unavailable_toast,
                     Toast.LENGTH_LONG).show();
         }
+
     }
 
     private boolean isNetworkAvailable() {
