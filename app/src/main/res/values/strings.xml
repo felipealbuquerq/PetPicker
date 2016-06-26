@@ -7,4 +7,5 @@
     <string name="enter_a_zip_code_text">Enter a zip code</string>
     <string name="or_text">or</string>
     <string name="find_nearby_shelters_text">Find nearby shelters</string>
+    <string name="zip_code_search_button">Search for shelters with entered zip code</string>
 </resources>

@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -16,10 +18,16 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String mTempZip = "32816";
-
-    @BindView(R.id.getSheltersButton)
+    @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
+
+    @BindView(R.id.zipEditText)
+    EditText mZipEditText;
+
+    @BindView(R.id.searchWithZipImageButton)
+    ImageButton mImageButton;
+
+    private String mDefaultZipCode = "32816";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (isNetworkAvailable()) {
-            FetchData.getShelterData(mTempZip);
+            FetchData.getShelterData(mDefaultZipCode);
+
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -39,11 +48,21 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            mImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FetchData.getShelterData(mZipEditText.getText().toString());
+                    Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
+                    intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
+                    startActivity(intent);
+                }
+            });
+
         } else {
             Toast.makeText(MainActivity.this, R.string.network_unavailable_toast,
                     Toast.LENGTH_LONG).show();
         }
-
     }
 
     private boolean isNetworkAvailable() {
