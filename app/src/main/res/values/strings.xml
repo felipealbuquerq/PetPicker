@@ -8,4 +8,5 @@
     <string name="or_text">or</string>
     <string name="find_nearby_shelters_text">Find nearby shelters</string>
     <string name="zip_code_search_button">Search for shelters with entered zip code</string>
+    <string name="get_pets_shelter_detail_button_text">GET PETS</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,9 +16,10 @@
 
         <ImageView
             android:id="@+id/petMediaImageView"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:contentDescription="@string/pet_detail_image_description"/>
+            android:contentDescription="@string/pet_detail_image_description"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/petStatusTextView"
