@@ -9,18 +9,18 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,17 +33,13 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int REQUEST_LOCATION = 101;
-    private static final String TAG = MainActivity.class.getSimpleName();
-
+    protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
-
-    @BindView(R.id.tempTextView)
-    TextView mTempText;
-
     private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
+    private AddressResultReceiver mResultReceiver;
     private String mDefaultZipCode;
+    private String mAddressOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +92,18 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnected(Bundle bundle) {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                     REQUEST_LOCATION);
         } else {
             // permission has been granted, continue as usual
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            Log.i(TAG + " On Connected", String.valueOf(mLastLocation.getLatitude()));
-            mTempText.setText(String.valueOf(mLastLocation.getLatitude()));
+            if (mGoogleApiClient.isConnected() && mLastLocation != null) {
+                startIntentService();
+            }
         }
     }
 
@@ -116,8 +113,9 @@ public class MainActivity extends AppCompatActivity implements
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // We can now safely use the API we requested access to
                 mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                Log.i(TAG + " ORPR", String.valueOf(mLastLocation.getLatitude()));
-                mTempText.setText(String.valueOf(mLastLocation.getLatitude()));
+                if (mGoogleApiClient.isConnected() && mLastLocation != null) {
+                    startIntentService();
+                }
             } else {
                 // Permission was denied or request was cancelled
                 denyLocationPermissionDialog();
@@ -154,5 +152,30 @@ public class MainActivity extends AppCompatActivity implements
         });
         alertDialog.setNegativeButton("CANCEL", null);
         alertDialog.show();
+    }
+
+    protected void startIntentService() {
+        Intent intent = new Intent(this, FetchAddressIntentService.class);
+        mResultReceiver = new AddressResultReceiver(new Handler());
+        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, mLastLocation);
+        startService(intent);
+    }
+
+    class AddressResultReceiver extends ResultReceiver {
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+            // If an address has been found, start accessing the Petfinder API
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                mDefaultZipCode = mAddressOutput;
+                FetchData.getShelterData(mDefaultZipCode);
+            }
+
+        }
     }
 }
