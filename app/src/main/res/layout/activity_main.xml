@@ -15,9 +15,9 @@
         android:id="@+id/appTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tempTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="143dp"
         android:text="@string/app_name"
         android:textColor="@color/colorTextPrimary"
         android:textSize="@dimen/main_title_text_size"
@@ -31,46 +31,7 @@
         android:layout_alignStart="@+id/appTitleTextView"
         android:layout_below="@+id/appTitleTextView"
         android:text="@string/petfinder_tribute_text"
-        android:textColor="@color/colorTextSecondary"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/orTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/zipEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:ems="10"
-            android:hint="@string/enter_a_zip_code_text"
-            android:inputType="number"
-            android:textColorHint="@color/colorTextSecondary"/>
-
-        <ImageButton
-            android:id="@+id/searchWithZipImageButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:contentDescription="@string/zip_code_search_button"
-            android:src="@drawable/ic_search_white_24dp"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/orTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/getSheltersButtonwithGps"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/or_text"
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
+        android:textColor="@color/colorTextSecondary"/>-
 
     <Button
         android:id="@+id/getSheltersButtonwithGps"
@@ -82,6 +43,14 @@
         android:background="@color/colorAccent"
         android:text="@string/find_nearby_shelters_text"
         android:textColor="@color/colorTextIcon"/>
+
+    <TextView
+        android:id="@+id/tempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="New Text"/>
 
 
 </RelativeLayout>
