@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements
     protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
+    @BindView(R.id.tempButton)
+    Button tempButton;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private String mDefaultZipCode;
@@ -59,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
+                intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
+                startActivity(intent);
+            }
+        });
+
+
+        FetchData.getShelterData("32816");
+        tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
