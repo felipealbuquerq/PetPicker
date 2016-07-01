@@ -21,25 +21,28 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private static final int REQUEST_LOCATION = 101;
     protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
+    private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
-    private AddressResultReceiver mResultReceiver;
     private String mDefaultZipCode;
-    private String mAddressOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +58,14 @@ public class MainActivity extends AppCompatActivity implements
                 .addApi(LocationServices.API)
                 .build();
 
-
-        if (isNetworkAvailable()) {
-            mButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
-                    intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
-                    startActivity(intent);
-                }
-            });
-        }
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
+                intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean isNetworkAvailable() {
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(Bundle bundle) {
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
@@ -100,9 +99,20 @@ public class MainActivity extends AppCompatActivity implements
                     REQUEST_LOCATION);
         } else {
             // permission has been granted, continue as usual
+            fetchLastLocation();
+        }
+    }
+
+    private void fetchLastLocation() {
+        if (isNetworkAvailable() && mGoogleApiClient.isConnected()) {
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            if (mGoogleApiClient.isConnected() && mLastLocation != null) {
-                startIntentService();
+            startIntentService();
+
+            // In rare cases when the last location is not found - request it
+            if (mLastLocation == null) {
+                mLocationRequest = LocationRequest.create();
+                mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             }
         }
     }
@@ -112,10 +122,7 @@ public class MainActivity extends AppCompatActivity implements
             if (grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // We can now safely use the API we requested access to
-                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                if (mGoogleApiClient.isConnected() && mLastLocation != null) {
-                    startIntentService();
-                }
+                fetchLastLocation();
             } else {
                 // Permission was denied or request was cancelled
                 denyLocationPermissionDialog();
@@ -148,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(DialogInterface dialog, int which) {
                 mDefaultZipCode = input.getText().toString();
                 FetchData.getShelterData(mDefaultZipCode);
+
+                if (!FetchData.mShelterFlag) {
+                    mButton.setVisibility(View.INVISIBLE);
+                    Toast.makeText(MainActivity.this, "You've entered an invalid zip code", Toast.LENGTH_SHORT).show();
+                } else {
+                    mButton.setVisibility(View.VISIBLE);
+                }
             }
         });
         alertDialog.setNegativeButton("CANCEL", null);
@@ -156,10 +170,16 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void startIntentService() {
         Intent intent = new Intent(this, FetchAddressIntentService.class);
-        mResultReceiver = new AddressResultReceiver(new Handler());
-        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        AddressResultReceiver resultReceiver = new AddressResultReceiver(new Handler());
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
         intent.putExtra(Constants.LOCATION_DATA_EXTRA, mLastLocation);
         startService(intent);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mLastLocation = location;
+        startIntentService();
     }
 
     class AddressResultReceiver extends ResultReceiver {
@@ -169,13 +189,12 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+            String addressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
             // If an address has been found, start accessing the Petfinder API
             if (resultCode == Constants.SUCCESS_RESULT) {
-                mDefaultZipCode = mAddressOutput;
+                mDefaultZipCode = addressOutput;
                 FetchData.getShelterData(mDefaultZipCode);
             }
-
         }
     }
 }

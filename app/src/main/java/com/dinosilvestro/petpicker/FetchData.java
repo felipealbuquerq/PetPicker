@@ -18,6 +18,9 @@ public class FetchData {
 
     private static final String TAG = FetchData.class.getSimpleName();
 
+    public static boolean mShelterFlag = false;
+    public static boolean mPetFlag = false;
+
     public static void getShelterData(String zip) {
         String completeUrl =
                 "http://api.petfinder.com/shelter.find?key="
@@ -45,8 +48,9 @@ public class FetchData {
                     // Log.v(TAG, jsonData);
                     if (response.isSuccessful()) {
                         fetchShelters(jsonData);
+                        mShelterFlag = true;
                     } else {
-                        //alertUserAboutError();
+                        mShelterFlag = false;
                     }
                 } catch (IOException | JSONException e) {
                     Log.e(TAG, "Exception caught: ", e);
@@ -80,13 +84,11 @@ public class FetchData {
                 try {
                     String jsonData = response.body().string();
                     Log.v(TAG, jsonData);
-                    if (response.isSuccessful()) {
-                        fetchPets(jsonData);
-                    } else {
-                        //alertUserAboutError();
-                    }
+                    mPetFlag = true;
+                    fetchPets(jsonData);
                 } catch (IOException | JSONException e) {
                     Log.e(TAG, "Exception caught: ", e);
+                    mPetFlag = false;
                 }
             }
         });
