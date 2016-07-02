@@ -48,32 +48,32 @@ public class PetDetailActivity extends AppCompatActivity {
 
             String status = intent.getStringExtra(Keys.PET_STATUS);
             if (!status.contains("{}")) { // Check to make sure this field is not empty
-                mStatusTextView.setText(String.format("Status: %s", status));
+                mStatusTextView.setText(String.format("STATUS: %s", status));
             }
 
             String sex = intent.getStringExtra(Keys.PET_SEX);
             if (!sex.contains("{}")) { // Check to make sure this field is not empty
-                mSexTextView.setText(String.format("Sex: %s", sex));
+                mSexTextView.setText(String.format("SEX: %s", sex));
             }
 
             String size = intent.getStringExtra(Keys.PET_SIZE);
             if (!size.contains("{}")) { // Check to make sure this field is not empty
-                mSizeTextView.setText(String.format("Size: %s", size));
+                mSizeTextView.setText(String.format("SIZE: %s", size));
             }
 
             String age = intent.getStringExtra(Keys.PET_AGE);
             if (!age.contains("{}")) { // Check to make sure this field is not empty
-                mAgeTextView.setText(String.format("Age: %s", age));
+                mAgeTextView.setText(String.format("AGE: %s", age));
             }
 
             String animal = intent.getStringExtra(Keys.PET_ANIMAL);
             if (!animal.contains("{}")) { // Check to make sure this field is not empty
-                mAnimalTextView.setText(String.format("Animal Type: %s", animal));
+                mAnimalTextView.setText(String.format("ANIMAL: %s", animal));
             }
 
             String description = intent.getStringExtra(Keys.PET_DESCRIPTION);
             if (!description.contains("{}")) { // Check to make sure this field is not empty
-                mDescriptionTextView.setText(String.format("Description: %s", description));
+                mDescriptionTextView.setText(String.format("DESCRIPTION: %s", description));
             }
 
             Picasso.with(this)

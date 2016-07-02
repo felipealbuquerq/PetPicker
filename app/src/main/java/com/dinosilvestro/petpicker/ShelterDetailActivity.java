@@ -54,32 +54,32 @@ public class ShelterDetailActivity extends AppCompatActivity {
 
             String phone = intent.getStringExtra(Keys.SHELTER_PHONE);
             if (!phone.contains("{}")) { // Check to make sure this field is not empty
-                mPhoneTextView.setText(String.format("Phone: %s", phone));
+                mPhoneTextView.setText(String.format("PHONE: %s", phone));
             }
 
             String email = intent.getStringExtra(Keys.SHELTER_EMAIL);
             if (!email.contains("{}")) { // Check to make sure this field is not empty
-                mEmailTextView.setText(String.format("Email: %s", email));
+                mEmailTextView.setText(String.format("EMAIL: %s", email));
             }
 
             String address = intent.getStringExtra(Keys.SHELTER_ADDRESS);
             if (!address.contains("{}")) { // Check to make sure this field is not empty
-                mAddressTextView.setText(String.format("Address: %s", address));
+                mAddressTextView.setText(String.format("ADDRESS: %s", address));
             }
 
             String city = intent.getStringExtra(Keys.SHELTER_CITY);
             if (!city.contains("{}")) { // Check to make sure this field is not empty
-                mCityTextView.setText(String.format("City: %s", city));
+                mCityTextView.setText(String.format("CITY: %s", city));
             }
 
             String state = intent.getStringExtra(Keys.SHELTER_STATE);
             if (!state.contains("{}")) { // Check to make sure this field is not empty
-                mStateTextView.setText(String.format("State: %s", state));
+                mStateTextView.setText(String.format("STATE: %s", state));
             }
 
             String zip = intent.getStringExtra(Keys.SHELTER_ZIP);
             if (!zip.contains("{}")) { // Check to make sure this field is not empty
-                mZipTextView.setText(String.format("Zip: %s", zip));
+                mZipTextView.setText(String.format("ZIP: %s", zip));
             }
         }
 
