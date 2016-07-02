@@ -46,6 +46,6 @@ public class ShelterListActivity extends AppCompatActivity {
         }
 
         // Set title of actionbar to the zip code passed in
-        //setTitle("Shelters near: " + );
+        setTitle(getString(R.string.pet_shelters_near_text) + MainActivity.mDefaultZipCode);
     }
 }

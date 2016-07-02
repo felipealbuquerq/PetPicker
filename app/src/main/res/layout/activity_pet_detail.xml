@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/petMediaImageView"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             card_view:cardCornerRadius="4dp">
 
             <LinearLayout

@@ -4,15 +4,14 @@
     <string name="pet_grid_image_description">Image of pet</string>
     <string name="pet_detail_image_description">Large photo of pet</string>
     <string name="petfinder_tribute_text">powered by Petfinder</string>
-    <string name="enter_a_zip_code_text">Enter a zip code</string>
-    <string name="or_text">or</string>
-    <string name="find_nearby_shelters_text">Find nearby shelters</string>
+    <string name="find_nearby_shelters_text">Find nearby pet shelters</string>
     <string name="zip_code_search_button">Search for shelters with entered zip code</string>
-    <string name="get_pets_shelter_detail_button_text">GET PETS</string>
+    <string name="pick_pets_shelter_detail_button_text">PICK PETS</string>
     <string name="address_found">Address has been found</string>
     <string name="no_address_found">Address not found</string>
     <string name="invalid_lat_long_used">Invalid lat/long</string>
     <string name="service_not_available">Service is not available right now</string>
     <string name="empty_adoption_grid_text">No pets currently available for adoption.</string>
     <string name="no_shelters_available_list_text">There are no shelters available for this location.</string>
+    <string name="pet_shelters_near_text">"Pet shelters near: "</string>
 </resources>

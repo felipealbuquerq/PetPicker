@@ -92,7 +92,7 @@
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
         android:padding="4dp"
-        android:text="@string/get_pets_shelter_detail_button_text"
+        android:text="@string/pick_pets_shelter_detail_button_text"
         android:textColor="@color/colorTextIcon"/>
 
 </RelativeLayout>

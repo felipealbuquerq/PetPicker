@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements
         LocationListener {
 
     private static final int REQUEST_LOCATION = 101;
+    public static String mDefaultZipCode;
     protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements
     Button tempButton;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
-    private String mDefaultZipCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
