@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,12 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.controller.PetAdapter;
+import com.dinosilvestro.petpicker.controller.PetParcel;
+import com.dinosilvestro.petpicker.model.FetchData;
+import com.dinosilvestro.petpicker.model.Keys;
 
 import java.util.Arrays;
 

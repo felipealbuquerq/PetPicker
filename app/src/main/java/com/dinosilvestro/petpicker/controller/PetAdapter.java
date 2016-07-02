@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.model.Keys;
+import com.dinosilvestro.petpicker.view.PetDetailActivity;
 import com.squareup.picasso.Picasso;
 
 public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHolder> {

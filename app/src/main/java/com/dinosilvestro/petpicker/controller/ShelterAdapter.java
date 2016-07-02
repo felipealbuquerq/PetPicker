@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.model.Keys;
+import com.dinosilvestro.petpicker.view.ShelterDetailActivity;
 
 public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterAdapterViewHolder> {
 

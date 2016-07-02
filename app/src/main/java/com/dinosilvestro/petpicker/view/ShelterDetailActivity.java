@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.controller.PetParcel;
+import com.dinosilvestro.petpicker.model.FetchData;
+import com.dinosilvestro.petpicker.model.Keys;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

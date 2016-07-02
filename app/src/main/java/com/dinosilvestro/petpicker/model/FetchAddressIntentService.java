@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.model;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.dinosilvestro.petpicker.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

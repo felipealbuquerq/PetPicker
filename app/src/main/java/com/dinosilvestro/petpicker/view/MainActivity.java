@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker;
+package com.dinosilvestro.petpicker.view;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,6 +22,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.controller.ShelterParcel;
+import com.dinosilvestro.petpicker.model.Constants;
+import com.dinosilvestro.petpicker.model.FetchAddressIntentService;
+import com.dinosilvestro.petpicker.model.FetchData;
+import com.dinosilvestro.petpicker.model.Keys;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
