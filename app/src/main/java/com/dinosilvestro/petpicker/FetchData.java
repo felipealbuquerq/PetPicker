@@ -45,15 +45,12 @@ public class FetchData {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     String jsonData = response.body().string();
-                    // Log.v(TAG, jsonData);
-                    if (response.isSuccessful()) {
-                        fetchShelters(jsonData);
-                        mShelterFlag = true;
-                    } else {
-                        mShelterFlag = false;
-                    }
+                    Log.v(TAG, jsonData);
+                    fetchShelters(jsonData);
+                    mShelterFlag = true;
                 } catch (IOException | JSONException e) {
                     Log.e(TAG, "Exception caught: ", e);
+                    mShelterFlag = false;
                 }
             }
         });
@@ -84,8 +81,8 @@ public class FetchData {
                 try {
                     String jsonData = response.body().string();
                     Log.v(TAG, jsonData);
-                    mPetFlag = true;
                     fetchPets(jsonData);
+                    mPetFlag = true;
                 } catch (IOException | JSONException e) {
                     Log.e(TAG, "Exception caught: ", e);
                     mPetFlag = false;

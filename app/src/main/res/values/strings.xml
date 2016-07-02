@@ -13,4 +13,6 @@
     <string name="no_address_found">Address not found</string>
     <string name="invalid_lat_long_used">Invalid lat/long</string>
     <string name="service_not_available">Service is not available right now</string>
+    <string name="empty_adoption_grid_text">No pets currently available for adoption.</string>
+    <string name="no_shelters_available_list_text">There are no shelters available for this location.</string>
 </resources>

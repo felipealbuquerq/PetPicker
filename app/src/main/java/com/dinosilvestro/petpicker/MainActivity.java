@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -70,13 +69,11 @@ public class MainActivity extends AppCompatActivity implements
         });
 
 
-        FetchData.getShelterData("32816");
+        //FetchData.getShelterData("32816");
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
-                intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
-                startActivity(intent);
+                denyLocationPermissionDialog();
             }
         });
     }
@@ -168,13 +165,6 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(DialogInterface dialog, int which) {
                 mDefaultZipCode = input.getText().toString();
                 FetchData.getShelterData(mDefaultZipCode);
-
-                if (!FetchData.mShelterFlag) {
-                    mButton.setVisibility(View.INVISIBLE);
-                    Toast.makeText(MainActivity.this, "You've entered an invalid zip code", Toast.LENGTH_SHORT).show();
-                } else {
-                    mButton.setVisibility(View.VISIBLE);
-                }
             }
         });
         alertDialog.setNegativeButton("CANCEL", null);

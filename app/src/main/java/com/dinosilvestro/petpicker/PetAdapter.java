@@ -91,11 +91,5 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
             intent.putExtra(Keys.PET_MEDIA, mMedia);
             mContext.startActivity(intent);
         }
-
-        public String trimShelterName(ShelterParcel shelters) {
-            String name = shelters.getName();
-            String name1 = name.replace("{\"$t\":\"", "");
-            return name1.replace("\"}", "");
-        }
     }
 }

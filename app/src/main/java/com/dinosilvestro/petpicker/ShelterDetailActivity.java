@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,13 +83,6 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
 
         FetchData.getPetData(mShelterId);
-
-        if (!FetchData.mPetFlag) {
-            mGetPetsButton.setVisibility(View.INVISIBLE);
-            Toast.makeText(ShelterDetailActivity.this, "No pets available for adoption", Toast.LENGTH_SHORT).show();
-        } else {
-            mGetPetsButton.setVisibility(View.VISIBLE);
-        }
 
         mGetPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
