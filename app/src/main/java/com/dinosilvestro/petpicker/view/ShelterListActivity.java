@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.dinosilvestro.petpicker.R;
@@ -24,10 +26,8 @@ public class ShelterListActivity extends AppCompatActivity {
 
     @BindView(R.id.shelterRecyclerView)
     RecyclerView mRecyclerView;
-
     @BindView(R.id.shelterEmptyCardView)
     CardView mShelterEmptyCardView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +53,20 @@ public class ShelterListActivity extends AppCompatActivity {
 
         // Set title of actionbar to the zip code passed in
         setTitle(getString(R.string.pet_shelters_near_text) + MainActivity.mDefaultZipCode);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_pet_picks) {
+            Intent intent = new Intent(this, PetPicksGrid.class);
+            startActivity(intent);
+        }
+        return true;
     }
 }

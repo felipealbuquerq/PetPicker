@@ -15,9 +15,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
         <service
             android:name=".model.FetchAddressIntentService"
             android:exported="false"/>
+
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,6 +33,15 @@
         <activity android:name=".view.PetGridActivity">
         </activity>
         <activity android:name=".view.PetDetailActivity">
+        </activity>
+
+        <provider
+            android:name=".model.PetProvider"
+            android:authorities="com.dinosilvestro.petpicker"
+            android:exported="false"
+            android:syncable="true"/>
+
+        <activity android:name=".view.PetPicksGrid">
         </activity>
     </application>
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.controller.PetAdapter;
@@ -26,6 +27,8 @@ public class PetGridActivity extends AppCompatActivity {
     RecyclerView mPetRecyclerView;
     @BindView(R.id.emptyCardView)
     CardView mEmptyCardView;
+    @BindView(R.id.petGridEmptyTextView)
+    TextView mEmptyTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class PetGridActivity extends AppCompatActivity {
 
         if (!FetchData.mPetFlag) {
             mEmptyCardView.setVisibility(View.VISIBLE);
+            mEmptyTextView.setText(R.string.empty_adoption_grid_text);
         } else {
             Intent intent = getIntent();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(Keys.GET_PETS);
