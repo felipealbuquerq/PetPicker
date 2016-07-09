@@ -15,4 +15,5 @@
     <string name="no_shelters_available_list_text">There are no shelters available for this location.</string>
     <string name="pet_shelters_near_text">"Pet shelters near: "</string>
     <string name="pet_grid_empty_text">You don\'t have any pet picks!</string>
+    <string name="my_pet_picks_title_text">My Pet Picks</string>
 </resources>

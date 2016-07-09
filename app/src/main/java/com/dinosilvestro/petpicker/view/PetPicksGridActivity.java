@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PetPicksGrid extends AppCompatActivity {
+public class PetPicksGridActivity extends AppCompatActivity {
 
     @BindView(R.id.petRecyclerView)
     RecyclerView mPetRecyclerView;
@@ -35,6 +35,8 @@ public class PetPicksGrid extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_grid);
         ButterKnife.bind(this);
+
+        setTitle("My Pet Picks");
 
         if (mArrayPetParcel == null || mArrayPetParcel.size() == 0) {
             Cursor cursor = getApplicationContext()

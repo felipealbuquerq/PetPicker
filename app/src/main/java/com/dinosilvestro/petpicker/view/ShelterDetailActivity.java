@@ -3,6 +3,8 @@ package com.dinosilvestro.petpicker.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -98,5 +100,20 @@ public class ShelterDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_pet_picks) {
+            Intent intent = new Intent(this, PetPicksGridActivity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 }

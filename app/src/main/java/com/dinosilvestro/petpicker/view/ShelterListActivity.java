@@ -64,7 +64,7 @@ public class ShelterListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.menu_pet_picks) {
-            Intent intent = new Intent(this, PetPicksGrid.class);
+            Intent intent = new Intent(this, PetPicksGridActivity.class);
             startActivity(intent);
         }
         return true;

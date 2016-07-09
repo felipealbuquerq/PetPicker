@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/menu_pet_picks"
-        android:title="My Pet Picks"
+        android:icon="@drawable/ic_favorite_white_24dp"
+        android:title="@string/my_pet_picks_title_text"
         app:showAsAction="always">
     </item>
 

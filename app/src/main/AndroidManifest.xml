@@ -41,7 +41,7 @@
             android:exported="false"
             android:syncable="true"/>
 
-        <activity android:name=".view.PetPicksGrid">
+        <activity android:name=".view.PetPicksGridActivity">
         </activity>
     </application>
 
