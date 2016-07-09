@@ -1,5 +1,7 @@
 package com.dinosilvestro.petpicker.view;
 
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +21,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PetPicksGridActivity extends AppCompatActivity {
+public class PetPicksGridActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.petRecyclerView)
     RecyclerView mPetRecyclerView;
@@ -29,6 +32,7 @@ public class PetPicksGridActivity extends AppCompatActivity {
     TextView mEmptyTextView;
 
     private ArrayList<PetParcel> mArrayPetParcel = new ArrayList<>();
+    private PetPicksAdapter mPetPicksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,10 @@ public class PetPicksGridActivity extends AppCompatActivity {
             Cursor cursor = getApplicationContext()
                     .getContentResolver()
                     .query(PetContract.PetEntry.CONTENT_URI, null, null, null, null);
-            getPetPicksParcel(cursor);
+            onLoadFinished(null, cursor);
 
-            PetPicksAdapter adapter = new PetPicksAdapter(this, mArrayPetParcel);
-            mPetRecyclerView.setAdapter(adapter);
+            mPetPicksAdapter = new PetPicksAdapter(this, mArrayPetParcel);
+            mPetRecyclerView.setAdapter(mPetPicksAdapter);
 
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
             mPetRecyclerView.setLayoutManager(layoutManager);
@@ -59,8 +63,13 @@ public class PetPicksGridActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
 
-    private void getPetPicksParcel(Cursor cursor) {
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         while (cursor.moveToNext()) {
             PetParcel petParcel = new PetParcel();
 
@@ -77,5 +86,10 @@ public class PetPicksGridActivity extends AppCompatActivity {
             mArrayPetParcel.add(petParcel);
         }
         cursor.close();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mPetPicksAdapter.notifyDataSetChanged();
     }
 }
