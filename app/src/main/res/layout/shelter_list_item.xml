@@ -8,6 +8,7 @@
     android:layout_height="80dp"
     android:layout_gravity="center"
     android:layout_margin="8dp"
+    android:animateLayoutChanges="true"
     card_view:cardBackgroundColor="@color/colorAccent"
     card_view:cardCornerRadius="4dp">
 

@@ -115,6 +115,7 @@ public class PetDetailActivity extends AppCompatActivity {
         mPickActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animate();
                 Uri uri = PetContract.PetEntry.CONTENT_URI.buildUpon()
                         .appendPath(mPetId).build();
                 try {
@@ -193,5 +194,11 @@ public class PetDetailActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    public void animate() {
+        mPickActionButton.setScaleX(0);
+        mPickActionButton.setScaleY(0);
+        mPickActionButton.animate().scaleX(1).scaleY(1).start();
     }
 }
