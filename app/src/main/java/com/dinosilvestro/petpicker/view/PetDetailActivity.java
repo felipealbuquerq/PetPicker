@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.model.Keys;
 import com.dinosilvestro.petpicker.model.PetContract;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -54,11 +55,15 @@ public class PetDetailActivity extends AppCompatActivity {
     private String mPetDescription;
     private String mPetMedia;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_detail);
         ButterKnife.bind(this);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Intent intent = this.getIntent();
         if (intent != null) {
@@ -163,6 +168,14 @@ public class PetDetailActivity extends AppCompatActivity {
         contentValues.put(PetContract.PetEntry.COLUMN_PET_ANIMAL, mPetAnimal);
         contentValues.put(PetContract.PetEntry.COLUMN_PET_DESCRIPTION, mPetDescription);
         contentValues.put(PetContract.PetEntry.COLUMN_PET_MEDIA, mPetMedia);
+
+        // Add relevant values to Firebase Analytics
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetSex);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetSize);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetAge);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetAnimal);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
         return contentValues;
     }

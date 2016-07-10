@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "383505533419",
+    "firebase_url": "https://pet-picker.firebaseio.com",
+    "project_id": "pet-picker",
+    "storage_bucket": "pet-picker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383505533419:android:474659471c22afca",
+        "android_client_info": {
+          "package_name": "com.dinosilvestro.petpicker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383505533419-v75mpbs48bcjftmnb8p7ss78q9asrmtr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOEmC-XighnWkYDF4Yz14d7k4jInfyDp4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
