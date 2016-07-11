@@ -1,5 +1,7 @@
 # Pet Picker
 
+Pet Picker is my Capstone project for my Android Developer Nanodegree. I leveraged the Petfinder API and filterted it from JSON into a readable format for my layouts. Pet Picker detects the user's last location - or requests one if there isn't one present - and shows nearby pet shelters. The flow of the app is demonstrated in the screenshots below, as well as the main features and implementations. 
+
 ## Implementations (Stage 1 - Design)
 
 - Proposal contains an overview description.
