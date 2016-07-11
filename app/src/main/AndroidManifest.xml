@@ -20,20 +20,27 @@
             android:name=".model.FetchAddressIntentService"
             android:exported="false"/>
 
-        <activity android:name=".view.MainActivity">
+        <activity
+            android:name=".view.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.ShelterListActivity"/>
-        <activity android:name=".view.ShelterDetailActivity">
-        </activity>
-        <activity android:name=".view.PetGridActivity">
-        </activity>
-        <activity android:name=".view.PetDetailActivity">
-        </activity>
+        <activity
+            android:name=".view.ShelterListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.ShelterDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.PetGridActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.PetDetailActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name=".model.PetProvider"
@@ -41,8 +48,9 @@
             android:exported="false"
             android:syncable="true"/>
 
-        <activity android:name=".view.PetPicksGridActivity">
-        </activity>
+        <activity
+            android:name=".view.PetPicksGridActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".widget.WidgetProvider"
