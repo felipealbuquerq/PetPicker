@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements
     protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
-    @BindView(R.id.tempButton)
-    Button tempButton;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
 
@@ -71,15 +69,6 @@ public class MainActivity extends AppCompatActivity implements
                 Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
                 intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
                 startActivity(intent);
-            }
-        });
-
-
-        //FetchData.getShelterData("32816");
-        tempButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                denyLocationPermissionDialog();
             }
         });
     }

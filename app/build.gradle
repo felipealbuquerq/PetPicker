@@ -13,18 +13,8 @@ android {
         versionName "1.0"
     }
 
-    signingConfigs {
-        release {
-            keyAlias 'capstone'
-            keyPassword 'udacity'
-            storeFile file('capstone_keystore.jks')
-            storePassword 'udacity'
-        }
-    }
-
     buildTypes {
         release {
-            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -44,13 +44,4 @@
         android:text="@string/find_nearby_shelters_text"
         android:textColor="@color/colorTextIcon"/>
 
-    <Button
-        android:id="@+id/tempButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Emulator Testing Button"
-        />
-
 </RelativeLayout>
