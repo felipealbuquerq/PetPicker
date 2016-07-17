@@ -1,6 +1,6 @@
 # Pet Picker
 
-Leveraged a REST Api and and Google Location to find nearby pet shelters - and the pets that are adoptable at each shelter. Implemented a content provider for data persistence - as well as Firebase analytics to track the stats of picked pets. Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
+Leveraged a REST Api and Google Location to find nearby pet shelters and the pets that are adoptable at each shelter. Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets. Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
 
 ## Implementations (Stage 1 - Design)
 
