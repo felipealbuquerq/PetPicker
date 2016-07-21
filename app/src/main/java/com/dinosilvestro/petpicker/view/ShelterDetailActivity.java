@@ -1,12 +1,14 @@
 package com.dinosilvestro.petpicker.view;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.dinosilvestro.petpicker.R;
@@ -36,8 +38,19 @@ public class ShelterDetailActivity extends AppCompatActivity {
     TextView mZipTextView;
     @BindView(R.id.getPetsButton)
     Button mGetPetsButton;
+    @BindView(R.id.emailButton)
+    ImageButton mEmailImageButton;
+    @BindView(R.id.phoneButton)
+    ImageButton mPhoneImageButton;
+    @BindView(R.id.navigateButton)
+    ImageButton mNavigationImageButton;
 
     private String mNewShelterName;
+    private String mPhone;
+    private String mAddress;
+    private String mState;
+    private String mCity;
+    private String mEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,29 +71,29 @@ public class ShelterDetailActivity extends AppCompatActivity {
 
             mNewShelterName = name;
 
-            String phone = intent.getStringExtra(Keys.SHELTER_PHONE);
-            if (!phone.contains("{}")) { // Check to make sure this field is not empty
-                mPhoneTextView.setText(String.format("PHONE: %s", phone));
+            mPhone = intent.getStringExtra(Keys.SHELTER_PHONE);
+            if (!mPhone.contains("{}")) { // Check to make sure this field is not empty
+                mPhoneTextView.setText(String.format("PHONE: %s", mPhone));
             }
 
-            String email = intent.getStringExtra(Keys.SHELTER_EMAIL);
-            if (!email.contains("{}")) { // Check to make sure this field is not empty
-                mEmailTextView.setText(String.format("EMAIL: %s", email));
+            mEmail = intent.getStringExtra(Keys.SHELTER_EMAIL);
+            if (!mEmail.contains("{}")) { // Check to make sure this field is not empty
+                mEmailTextView.setText(String.format("EMAIL: %s", mEmail));
             }
 
-            String address = intent.getStringExtra(Keys.SHELTER_ADDRESS);
-            if (!address.contains("{}")) { // Check to make sure this field is not empty
-                mAddressTextView.setText(String.format("ADDRESS: %s", address));
+            mAddress = intent.getStringExtra(Keys.SHELTER_ADDRESS);
+            if (!mAddress.contains("{}")) { // Check to make sure this field is not empty
+                mAddressTextView.setText(String.format("ADDRESS: %s", mAddress));
             }
 
-            String city = intent.getStringExtra(Keys.SHELTER_CITY);
-            if (!city.contains("{}")) { // Check to make sure this field is not empty
-                mCityTextView.setText(String.format("CITY: %s", city));
+            mCity = intent.getStringExtra(Keys.SHELTER_CITY);
+            if (!mCity.contains("{}")) { // Check to make sure this field is not empty
+                mCityTextView.setText(String.format("CITY: %s", mCity));
             }
 
-            String state = intent.getStringExtra(Keys.SHELTER_STATE);
-            if (!state.contains("{}")) { // Check to make sure this field is not empty
-                mStateTextView.setText(String.format("STATE: %s", state));
+            mState = intent.getStringExtra(Keys.SHELTER_STATE);
+            if (!mState.contains("{}")) { // Check to make sure this field is not empty
+                mStateTextView.setText(String.format("STATE: %s", mState));
             }
 
             String zip = intent.getStringExtra(Keys.SHELTER_ZIP);
@@ -90,6 +103,30 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
 
         FetchData.getPetData(mShelterId);
+
+        mEmailImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                composeEmail(mEmail);
+            }
+        });
+
+        mPhoneImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialPhoneNumber(mPhone);
+            }
+        });
+
+        mNavigationImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String location = mAddress + mCity + mState;
+                String removedSpacesLocation = location.replace(" ", "+");
+                Uri geolocation = Uri.parse("geo:0,0?q=" + removedSpacesLocation);
+                showMap(geolocation);
+            }
+        });
 
         mGetPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,4 +153,30 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    public void dialPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    public void showMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    public void composeEmail(String address) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, address);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
 }

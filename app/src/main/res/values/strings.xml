@@ -17,4 +17,7 @@
     <string name="pet_grid_empty_text">You don\'t have any pet picks!</string>
     <string name="my_pet_picks_title_text">My Pet Picks</string>
     <string name="widget_pet_pick_photo">Widget Pet Pick Photo</string>
+    <string name="email_shelter_button_description">Email shelter button</string>
+    <string name="call_shelter_button_description">Call shelter button</string>
+    <string name="navigation_shelter_button_description">Navigation shelter button</string>
 </resources>
