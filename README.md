@@ -60,7 +60,7 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ![Phone Shelter List Layout](http://i.imgur.com/EvEno7P.png)
 
-![Phone Shelter Detail Layout](http://i.imgur.com/eREUVEV.png)
+![Phone Shelter Detail Layout](http://i.imgur.com/OoOPYCS.jpg)
 
 ![Phone Pet List Layout](http://i.imgur.com/HznfaYb.jpg)
 
