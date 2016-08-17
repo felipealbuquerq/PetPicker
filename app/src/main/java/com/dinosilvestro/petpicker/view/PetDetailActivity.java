@@ -13,12 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.model.Keys;
 import com.dinosilvestro.petpicker.model.PetContract;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -40,6 +42,8 @@ public class PetDetailActivity extends AppCompatActivity {
     TextView mDescriptionTextView;
     @BindView(R.id.petMediaImageView)
     ImageView mMediaImageView;
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
 
     @BindView(R.id.pickActionButton)
     FloatingActionButton mPickActionButton;
@@ -109,7 +113,17 @@ public class PetDetailActivity extends AppCompatActivity {
 
             Picasso.with(this)
                     .load(intent.getStringExtra(Keys.PET_MEDIA))
-                    .into(mMediaImageView);
+                    .into(mMediaImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            //TODO Set Placeholder Image Here
+                        }
+                    });
         }
 
         mPickActionButton.setOnClickListener(new View.OnClickListener() {

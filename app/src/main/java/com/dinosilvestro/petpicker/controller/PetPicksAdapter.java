@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.model.Keys;
 import com.dinosilvestro.petpicker.view.PetDetailActivity;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class PetPicksAdapter extends RecyclerView.Adapter<PetPicksAdapter.PetPic
     public class PetPicksAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mPetGridImageView;
+        private ProgressBar mProgressBar;
         private String mId;
         private String mName;
         private String mStatus;
@@ -60,13 +63,24 @@ public class PetPicksAdapter extends RecyclerView.Adapter<PetPicksAdapter.PetPic
         public PetPicksAdapterViewHolder(View itemView) {
             super(itemView);
             mPetGridImageView = (ImageView) itemView.findViewById(R.id.petGridImageView);
+            mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
             itemView.setOnClickListener(this);
         }
 
         public void bindPet(PetParcel petParcel) {
             Picasso.with(mContext)
                     .load(petParcel.getMedia())
-                    .into(mPetGridImageView);
+                    .into(mPetGridImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            //TODO Set Placeholder Image Here
+                        }
+                    });
 
             mId = trimEverythingElse(petParcel.getId());
             mName = trimEverythingElse(petParcel.getName());

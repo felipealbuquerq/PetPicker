@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight">
@@ -16,6 +17,14 @@
             android:layout_height="350dp"
             android:contentDescription="@string/pet_detail_image_description"
             android:scaleType="centerCrop"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/colorTextIcon"
+            tools:targetApi="lollipop"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/pickActionButton"
