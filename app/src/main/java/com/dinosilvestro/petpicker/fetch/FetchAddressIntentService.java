@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.fetch;
 
 import android.app.IntentService;
 import android.content.Intent;

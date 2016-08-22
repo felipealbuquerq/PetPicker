@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.view;
+package com.dinosilvestro.petpicker.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.controller.ShelterAdapter;
-import com.dinosilvestro.petpicker.controller.ShelterParcel;
-import com.dinosilvestro.petpicker.model.FetchData;
-import com.dinosilvestro.petpicker.model.Keys;
+import com.dinosilvestro.petpicker.adapters.ShelterAdapter;
+import com.dinosilvestro.petpicker.fetch.FetchData;
+import com.dinosilvestro.petpicker.fetch.Keys;
+import com.dinosilvestro.petpicker.parcels.ShelterParcel;
 
 import java.util.Arrays;
 

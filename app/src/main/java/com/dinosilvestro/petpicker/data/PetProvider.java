@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;

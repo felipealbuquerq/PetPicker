@@ -18,11 +18,11 @@
             android:value="@integer/google_play_services_version"/>
 
         <service
-            android:name=".model.FetchAddressIntentService"
+            android:name=".fetch.FetchAddressIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".view.MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,26 +31,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.ShelterListActivity"
+            android:name=".ui.ShelterListActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.ShelterDetailActivity"
+            android:name=".ui.ShelterDetailActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.PetGridActivity"
+            android:name=".ui.PetGridActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.PetDetailActivity"
+            android:name=".ui.PetDetailActivity"
             android:screenOrientation="portrait"/>
 
         <provider
-            android:name=".model.PetProvider"
+            android:name=".data.PetProvider"
             android:authorities="com.dinosilvestro.petpicker"
             android:exported="false"
             android:syncable="true"/>
 
         <activity
-            android:name=".view.PetPicksGridActivity"
+            android:name=".ui.PetPicksGridActivity"
             android:screenOrientation="portrait"/>
 
         <receiver

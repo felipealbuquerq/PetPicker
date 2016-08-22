@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.view;
+package com.dinosilvestro.petpicker.ui;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.model.Keys;
-import com.dinosilvestro.petpicker.model.PetContract;
+import com.dinosilvestro.petpicker.data.PetContract;
+import com.dinosilvestro.petpicker.fetch.Keys;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;

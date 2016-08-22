@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

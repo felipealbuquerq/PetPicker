@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.view;
+package com.dinosilvestro.petpicker.ui;
 
 import android.app.LoaderManager;
 import android.content.Loader;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.controller.PetParcel;
-import com.dinosilvestro.petpicker.controller.PetPicksAdapter;
-import com.dinosilvestro.petpicker.model.PetContract;
+import com.dinosilvestro.petpicker.adapters.PetPicksAdapter;
+import com.dinosilvestro.petpicker.data.PetContract;
+import com.dinosilvestro.petpicker.parcels.PetParcel;
 
 import java.util.ArrayList;
 

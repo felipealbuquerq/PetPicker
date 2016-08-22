@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.fetch;
 
 public class Keys {
     public static final String apiKey = ""; //Please place your Pet Finder Api Key here

@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.controller;
+package com.dinosilvestro.petpicker.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,39 +10,44 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.model.Keys;
-import com.dinosilvestro.petpicker.view.PetDetailActivity;
+import com.dinosilvestro.petpicker.fetch.Keys;
+import com.dinosilvestro.petpicker.parcels.PetParcel;
+import com.dinosilvestro.petpicker.ui.PetDetailActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHolder> {
+import java.util.ArrayList;
 
-    private PetParcel[] mPetParcel;
+public class PetPicksAdapter extends RecyclerView.Adapter<PetPicksAdapter.PetPicksAdapterViewHolder> {
+
+    ArrayList<PetParcel> mPetParcel;
     private Context mContext;
 
-    public PetAdapter(Context context, PetParcel[] petParcel) {
+
+    public PetPicksAdapter(Context context, ArrayList<PetParcel> petParcels) {
         mContext = context;
-        mPetParcel = petParcel;
+        mPetParcel = petParcels;
     }
 
+
     @Override
-    public PetAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PetPicksAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pet_grid_item, parent, false);
-        return new PetAdapterViewHolder(view);
+        return new PetPicksAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PetAdapterViewHolder holder, int position) {
-        holder.bindPet(mPetParcel[position]);
+    public void onBindViewHolder(PetPicksAdapterViewHolder holder, int position) {
+        holder.bindPet(mPetParcel.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mPetParcel.length;
+        return mPetParcel.size();
     }
 
-    public class PetAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PetPicksAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mPetGridImageView;
         private ProgressBar mProgressBar;
@@ -56,7 +61,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
         private String mDescription;
         private String mMedia;
 
-        public PetAdapterViewHolder(View itemView) {
+        public PetPicksAdapterViewHolder(View itemView) {
             super(itemView);
             mPetGridImageView = (ImageView) itemView.findViewById(R.id.petGridImageView);
             mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);

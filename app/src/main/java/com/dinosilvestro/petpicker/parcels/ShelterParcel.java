@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.controller;
+package com.dinosilvestro.petpicker.parcels;
 
 import android.os.Parcel;
 import android.os.Parcelable;

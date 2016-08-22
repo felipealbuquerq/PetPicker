@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.fetch;
 
 public final class Constants {
     public static final int SUCCESS_RESULT = 0;

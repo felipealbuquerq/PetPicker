@@ -9,7 +9,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.model.PetContract;
+import com.dinosilvestro.petpicker.data.PetContract;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

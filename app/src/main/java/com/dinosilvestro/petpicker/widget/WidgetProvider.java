@@ -12,7 +12,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.view.PetPicksGridActivity;
+import com.dinosilvestro.petpicker.ui.PetPicksGridActivity;
 
 public class WidgetProvider extends AppWidgetProvider {
 

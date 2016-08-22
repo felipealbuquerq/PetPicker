@@ -1,9 +1,9 @@
-package com.dinosilvestro.petpicker.model;
+package com.dinosilvestro.petpicker.fetch;
 
 import android.util.Log;
 
-import com.dinosilvestro.petpicker.controller.PetParcel;
-import com.dinosilvestro.petpicker.controller.ShelterParcel;
+import com.dinosilvestro.petpicker.parcels.PetParcel;
+import com.dinosilvestro.petpicker.parcels.ShelterParcel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
