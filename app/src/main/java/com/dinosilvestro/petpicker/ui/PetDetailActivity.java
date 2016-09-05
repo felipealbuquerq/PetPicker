@@ -2,7 +2,9 @@ package com.dinosilvestro.petpicker.ui;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +30,8 @@ import butterknife.ButterKnife;
 
 public class PetDetailActivity extends AppCompatActivity {
 
+    private static final String PREFS_FILE = "com.dinosilvestro.petpicker.preferences";
+    private static final String KEY_PET_PICK = "key_pet_pick";
     @BindView(R.id.petStatusTextView)
     TextView mStatusTextView;
     @BindView(R.id.petSexTextView)
@@ -44,7 +48,6 @@ public class PetDetailActivity extends AppCompatActivity {
     ImageView mMediaImageView;
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
-
     @BindView(R.id.pickActionButton)
     FloatingActionButton mPickActionButton;
 
@@ -61,11 +64,18 @@ public class PetDetailActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
+    //Trying a different method of saving for pet picks
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_detail);
         ButterKnife.bind(this);
+
+        mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -124,6 +134,8 @@ public class PetDetailActivity extends AppCompatActivity {
                             //TODO Set Placeholder Image Here
                         }
                     });
+
+            isPickedPet();
         }
 
         mPickActionButton.setOnClickListener(new View.OnClickListener() {
@@ -149,10 +161,18 @@ public class PetDetailActivity extends AppCompatActivity {
                         long id = ContentUris.parseId(insertedUri);
                         if (id != -1) {
                             Snackbar.make(view, mPetName + " has been added to your pet picks", Snackbar.LENGTH_SHORT).show();
+                            //Add pet to shared preferences file and set fab drawable
+                            mEditor.putString(KEY_PET_PICK + mPetId, mPetId);
+                            mEditor.apply();
+                            mPickActionButton.setImageResource(R.drawable.ic_favorite_white_24dp);
                         }
                     } else {
                         removePetPick();
                         Snackbar.make(view, mPetName + " has been removed from your pet picks", Snackbar.LENGTH_SHORT).show();
+                        //Remove pet from shared preferences file and set fab drawable
+                        mEditor.remove(mPetId);
+                        mEditor.apply();
+                        mPickActionButton.setImageResource(R.drawable.ic_favorite_border_white_24dp);
                     }
                     if (petPicksCursor != null) {
                         petPicksCursor.close();
@@ -214,5 +234,14 @@ public class PetDetailActivity extends AppCompatActivity {
         mPickActionButton.setScaleX(0);
         mPickActionButton.setScaleY(0);
         mPickActionButton.animate().scaleX(1).scaleY(1).start();
+    }
+
+    // Checking shared preferences file to see if this pet has been picked
+    public void isPickedPet() {
+        if (mSharedPreferences.contains(KEY_PET_PICK + mPetId)) {
+            mPickActionButton.setImageResource(R.drawable.ic_favorite_white_24dp);
+        } else {
+            mPickActionButton.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+        }
     }
 }
