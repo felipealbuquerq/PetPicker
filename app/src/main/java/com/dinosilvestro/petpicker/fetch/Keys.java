@@ -26,5 +26,6 @@ public class Keys {
     public static final String PET_DESCRIPTION = "PET_DESCRIPTION";
     public static final String PET_MEDIA = "PET_MEDIA";
 
+    // Key to pass shelter name into pet grid activity's actionbar
     public static final String NEW_SHELTER_NAME = "NEW_SHELTER_NAME";
 }
