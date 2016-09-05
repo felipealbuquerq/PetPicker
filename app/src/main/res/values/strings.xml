@@ -3,7 +3,7 @@
     <string name="network_unavailable_toast">Network is unavailable. Please try again later.</string>
     <string name="pet_grid_image_description">Image of pet</string>
     <string name="pet_detail_image_description">Large photo of pet</string>
-    <string name="petfinder_tribute_text">powered by Petfinder</string>
+    <string name="petfinder_tribute_text">powered by the Petfinder API</string>
     <string name="find_nearby_shelters_text">Find nearby pet shelters</string>
     <string name="zip_code_search_button">Search for shelters with entered zip code</string>
     <string name="pick_pets_shelter_detail_button_text">PICK PETS</string>
