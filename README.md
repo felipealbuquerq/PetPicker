@@ -2,7 +2,9 @@
 
 <a href='https://play.google.com/store/apps/details?id=com.dinosilvestro.petpicker&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-Leveraged a REST Api and Google Location to find nearby pet shelters and the pets that are adoptable at each shelter. Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets. Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
+- Leveraged a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
+- Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets.
+- Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
 
 ## Implementations (Stage 1 - Design)
 
