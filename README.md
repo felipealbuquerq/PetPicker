@@ -2,7 +2,9 @@
 
 <a href='https://play.google.com/store/apps/details?id=com.dinosilvestro.petpicker&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-Leveraged a REST Api and Google Location to find nearby pet shelters and the pets that are adoptable at each shelter. Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets. Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
+- Leveraged a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
+- Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets.
+- Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
 
 ## Implementations (Stage 1 - Design)
 
@@ -56,14 +58,16 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ##Screenshots
 
-![Phone Main Layout](http://i.imgur.com/YdaZsHX.png)
+![Phone Main Layout](http://i.imgur.com/oEe48bi.png)
 
-![Phone Shelter List Layout](http://i.imgur.com/EvEno7P.png)
+![Phone Shelter List Layout](http://i.imgur.com/sWACGqQ.png)
 
-![Phone Shelter Detail Layout](http://i.imgur.com/OoOPYCS.jpg)
+![Phone Shelter Detail Layout](http://i.imgur.com/pOK63m9.png)
 
-![Phone Pet List Layout](http://i.imgur.com/HznfaYb.jpg)
+![Phone Pet Grid Layout](http://i.imgur.com/DUMaZGB.jpg)
 
-![Phone Pet Detail Layout](http://i.imgur.com/9CnkGvB.png)
+![Phone Pet Detail Layout](http://i.imgur.com/T8HC2oA.png)
 
-![Phone Widget Layout](http://i.imgur.com/3hczVf3.png)
+![Phone Pet Picks Layout](http://i.imgur.com/tbV7het.jpg)
+
+![Phone Widget Layout](http://i.imgur.com/HEDmMvt.png)
