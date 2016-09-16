@@ -74,16 +74,40 @@ public class ShelterDetailActivity extends AppCompatActivity {
             mPhone = intent.getStringExtra(Keys.SHELTER_PHONE);
             if (!mPhone.contains("{}")) { // Check to make sure this field is not empty
                 mPhoneTextView.setText(String.format("PHONE: %s", mPhone));
+                // Click listener only works if a phone number is available
+                mPhoneImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialPhoneNumber(mPhone);
+                    }
+                });
             }
 
             mEmail = intent.getStringExtra(Keys.SHELTER_EMAIL);
             if (!mEmail.contains("{}")) { // Check to make sure this field is not empty
                 mEmailTextView.setText(String.format("EMAIL: %s", mEmail));
+                // Click listener only works if an email address is available
+                mEmailImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        composeEmail(mEmail);
+                    }
+                });
             }
 
             mAddress = intent.getStringExtra(Keys.SHELTER_ADDRESS);
             if (!mAddress.contains("{}")) { // Check to make sure this field is not empty
                 mAddressTextView.setText(String.format("ADDRESS: %s", mAddress));
+                // Click listener only works if an address is available
+                mNavigationImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String location = mAddress + mCity + mState;
+                        String removedSpacesLocation = location.replace(" ", "+");
+                        Uri geolocation = Uri.parse("geo:0,0?q=" + removedSpacesLocation);
+                        showMap(geolocation);
+                    }
+                });
             }
 
             mCity = intent.getStringExtra(Keys.SHELTER_CITY);
@@ -103,30 +127,6 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
 
         FetchData.getPetData(mShelterId);
-
-        mEmailImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                composeEmail(mEmail);
-            }
-        });
-
-        mPhoneImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialPhoneNumber(mPhone);
-            }
-        });
-
-        mNavigationImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String location = mAddress + mCity + mState;
-                String removedSpacesLocation = location.replace(" ", "+");
-                Uri geolocation = Uri.parse("geo:0,0?q=" + removedSpacesLocation);
-                showMap(geolocation);
-            }
-        });
 
         mGetPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
