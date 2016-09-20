@@ -20,4 +20,5 @@
     <string name="email_shelter_button_description">Email shelter button</string>
     <string name="call_shelter_button_description">Call shelter button</string>
     <string name="navigation_shelter_button_description">Navigation shelter button</string>
+    <string name="share_title_text">Share</string>
 </resources>

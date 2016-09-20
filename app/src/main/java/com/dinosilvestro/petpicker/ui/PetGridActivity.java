@@ -62,6 +62,7 @@ public class PetGridActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.menu_item_share).setVisible(false);
         return true;
     }
 

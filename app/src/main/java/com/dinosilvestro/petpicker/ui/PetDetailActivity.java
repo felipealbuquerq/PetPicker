@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.data.PetContract;
@@ -223,11 +224,23 @@ public class PetDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (menuItem.getItemId() == R.id.menu_pet_picks) {
-            Intent intent = new Intent(this, PetPicksGridActivity.class);
-            startActivity(intent);
+        switch (menuItem.getItemId()) {
+            case R.id.menu_pet_picks:
+                Intent intent = new Intent(this, PetPicksGridActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_item_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(mPetMedia));
+                sendIntent.setType("image/jpeg");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "I found " + mPetName + " on the Pet Picker app.");
+                Toast.makeText(this, "Works best with the default Messenger app", Toast.LENGTH_SHORT).show();
+                startActivity(Intent.createChooser(sendIntent, "Share pet pick to..."));
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
         }
-        return true;
     }
 
     public void animate() {
