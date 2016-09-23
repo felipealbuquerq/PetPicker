@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements
     protected Location mLastLocation;
     @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
-    private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -115,9 +114,9 @@ public class MainActivity extends AppCompatActivity implements
 
             // In rare cases when the last location is not found - request it
             if (mLastLocation == null) {
-                mLocationRequest = LocationRequest.create();
-                mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                LocationRequest locationRequest = LocationRequest.create();
+                locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, this);
             }
         }
     }

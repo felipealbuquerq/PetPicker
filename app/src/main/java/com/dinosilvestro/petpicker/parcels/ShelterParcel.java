@@ -28,7 +28,7 @@ public class ShelterParcel implements Parcelable {
     public ShelterParcel() {
     }
 
-    protected ShelterParcel(Parcel in) {
+    private ShelterParcel(Parcel in) {
         mId = in.readString();
         mName = in.readString();
         mPhone = in.readString();

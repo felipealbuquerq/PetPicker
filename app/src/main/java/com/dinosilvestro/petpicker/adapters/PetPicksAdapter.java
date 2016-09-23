@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class PetPicksAdapter extends RecyclerView.Adapter<PetPicksAdapter.PetPicksAdapterViewHolder> {
 
-    ArrayList<PetParcel> mPetParcel;
+    private ArrayList<PetParcel> mPetParcel;
     private Context mContext;
 
 
@@ -79,7 +79,8 @@ public class PetPicksAdapter extends RecyclerView.Adapter<PetPicksAdapter.PetPic
 
                         @Override
                         public void onError() {
-                            //TODO Set Placeholder Image Here
+                            // In the rare case that a pet does not have a pic, display app icon
+                            mPetGridImageView.setImageResource(R.mipmap.ic_launcher);
                         }
                     });
 

@@ -27,7 +27,7 @@ public class PetParcel implements Parcelable {
     private String mDescription;
     private String mMedia;
 
-    protected PetParcel(Parcel in) {
+    private PetParcel(Parcel in) {
         mId = in.readString();
         mName = in.readString();
         mStatus = in.readString();

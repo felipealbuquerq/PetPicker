@@ -132,7 +132,8 @@ public class PetDetailActivity extends AppCompatActivity {
 
                         @Override
                         public void onError() {
-                            //TODO Set Placeholder Image Here
+                            // In the rare case that a pet does not have a pic, display app icon
+                            mMediaImageView.setImageResource(R.mipmap.ic_launcher);
                         }
                     });
 

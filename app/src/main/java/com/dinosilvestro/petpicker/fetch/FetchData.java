@@ -94,7 +94,7 @@ public class FetchData {
         });
     }
 
-    public static ShelterParcel[] getShelters(String jsonData) throws JSONException {
+    private static ShelterParcel[] getShelters(String jsonData) throws JSONException {
         JSONObject shelterData = new JSONObject(jsonData);
         JSONObject petFinder = shelterData.getJSONObject("petfinder");
         JSONObject shelters = petFinder.getJSONObject("shelters");
@@ -119,7 +119,7 @@ public class FetchData {
         return shelterParcel;
     }
 
-    public static PetParcel[] getPets(String jsonData) throws JSONException {
+    private static PetParcel[] getPets(String jsonData) throws JSONException {
         JSONObject petData = new JSONObject(jsonData);
         JSONObject petFinder = petData.getJSONObject("petfinder");
         JSONObject pets = petFinder.getJSONObject("pets");
@@ -154,13 +154,13 @@ public class FetchData {
     }
 
 
-    public static ShelterParcel fetchShelters(String jsonData) throws JSONException {
+    private static ShelterParcel fetchShelters(String jsonData) throws JSONException {
         ShelterParcel shelterParcel = new ShelterParcel();
         shelterParcel.setShelters(getShelters(jsonData));
         return shelterParcel;
     }
 
-    public static PetParcel fetchPets(String jsonData) throws JSONException {
+    private static PetParcel fetchPets(String jsonData) throws JSONException {
         PetParcel petParcel = new PetParcel();
         petParcel.setPets(getPets(jsonData));
         return petParcel;

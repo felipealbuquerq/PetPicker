@@ -42,7 +42,6 @@ public class PetContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        //Check this
         public static String getPetFromUri(Uri uri) {
             return uri.getPathSegments().get(1);
         }

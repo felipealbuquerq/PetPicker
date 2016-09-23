@@ -75,7 +75,8 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
 
                         @Override
                         public void onError() {
-                            //TODO Set Placeholder Image Here
+                            // In the rare case that a pet does not have a pic, display app icon
+                            mPetGridImageView.setImageResource(R.mipmap.ic_launcher);
                         }
                     });
 
