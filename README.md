@@ -66,7 +66,7 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ![Phone Pet Grid Layout](http://i.imgur.com/DUMaZGB.jpg)
 
-![Phone Pet Detail Layout](http://i.imgur.com/T8HC2oA.png)
+![Phone Pet Detail Layout](http://i.imgur.com/0A84Wi3.jpg)
 
 ![Phone Pet Picks Layout](http://i.imgur.com/tbV7het.jpg)
 
