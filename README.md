@@ -2,7 +2,7 @@
 
 <a href='https://play.google.com/store/apps/details?id=com.dinosilvestro.petpicker&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-- Leveraged a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
+- Published an app to the Play Store that leverages a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
 - Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets.
 - Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
 
@@ -66,7 +66,7 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ![Phone Pet Grid Layout](http://i.imgur.com/DUMaZGB.jpg)
 
-![Phone Pet Detail Layout](http://i.imgur.com/T8HC2oA.png)
+![Phone Pet Detail Layout](http://i.imgur.com/0A84Wi3.jpg)
 
 ![Phone Pet Picks Layout](http://i.imgur.com/tbV7het.jpg)
 
