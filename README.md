@@ -58,16 +58,22 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ##Screenshots
 
-![Phone Main Layout](http://i.imgur.com/oEe48bi.png)
+![Phone Main Layout](http://i.imgur.com/zB6judZ.png)
 
-![Phone Shelter List Layout](http://i.imgur.com/sWACGqQ.png)
+![Phone Shelter List Layout](http://i.imgur.com/R6JLD1Z.png)
 
-![Phone Shelter Detail Layout](http://i.imgur.com/pOK63m9.png)
+![Phone Shelter Detail Layout](http://i.imgur.com/nM6bKT2.png)
 
-![Phone Pet Grid Layout](http://i.imgur.com/DUMaZGB.jpg)
+![Phone Pet Grid Layout](http://i.imgur.com/RLDI0d8.jpg)
 
-![Phone Pet Detail Layout](http://i.imgur.com/0A84Wi3.jpg)
+![Phone Pet Detail Layout](http://i.imgur.com/uYaUimL.jpg)
 
-![Phone Pet Picks Layout](http://i.imgur.com/tbV7het.jpg)
+![Phone Pet Picks Layout](http://i.imgur.com/MNhovKW.jpg)
 
-![Phone Widget Layout](http://i.imgur.com/HEDmMvt.png)
+![Phone Widget Showcase](http://i.imgur.com/BJEf6tb.png)
+
+![Phone Quick Action Showcase](http://i.imgur.com/zmCVIsX.png)
+
+![Phone Quick Action Icon Showcase](http://i.imgur.com/07lNrLL.png)
+
+
