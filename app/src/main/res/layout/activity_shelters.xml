@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:background="@color/colorPrimaryLightGradientStart">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLightGradientStart"
+                android:padding="16dp">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/shelterEmptyCardView"
-        android:layout_width="379dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:visibility="invisible"
-        card_view:cardCornerRadius="4dp"
-        card_view:layout_constraintBottom_toBottomOf="@+id/shelterRecyclerView"
-        card_view:layout_constraintLeft_toLeftOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/shelterRecyclerView"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1">
+        card_view:cardCornerRadius="4dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,14 +31,8 @@
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/shelterRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="571dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/shelterEmptyCardView"
-        app:layout_constraintRight_toRightOf="@+id/shelterEmptyCardView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLightGradientStart"/>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
