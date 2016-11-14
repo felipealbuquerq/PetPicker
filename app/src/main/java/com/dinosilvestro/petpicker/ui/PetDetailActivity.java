@@ -207,12 +207,10 @@ public class PetDetailActivity extends AppCompatActivity {
         contentValues.put(PetContract.PetEntry.COLUMN_PET_MEDIA, mPetMedia);
 
         // Add relevant values to Firebase Analytics
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetSex);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetSize);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetAge);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, mPetAnimal);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        mFirebaseAnalytics.setUserProperty("pet_sex", mPetSex);
+        mFirebaseAnalytics.setUserProperty("pet_size", mPetSize);
+        mFirebaseAnalytics.setUserProperty("pet_age", mPetAge);
+        mFirebaseAnalytics.setUserProperty("pet_animal", mPetAnimal);
 
         return contentValues;
     }
