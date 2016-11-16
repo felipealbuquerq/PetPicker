@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.ui.activities.MainActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

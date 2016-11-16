@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.ui;
+package com.dinosilvestro.petpicker.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,17 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.ui.fragments.PetGridFragment;
 
-public class ShelterDetailActivity extends AppCompatActivity {
-
-
+public class PetGridActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new ShelterDetailFragment())
+                .replace(R.id.container, new PetGridFragment())
                 .commit();
     }
 
@@ -36,5 +35,4 @@ public class ShelterDetailActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

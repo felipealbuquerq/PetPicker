@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.ui;
+package com.dinosilvestro.petpicker.ui.activities;
 
 import android.content.ContentUris;
 import android.content.ContentValues;

@@ -8,7 +8,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.dinosilvestro.petpicker.ui.PetPicksGridActivity"
+            android:targetClass="com.dinosilvestro.petpicker.ui.activities.PetPicksGridActivity"
             android:targetPackage="com.dinosilvestro.petpicker"/>
         <!-- If your shortcut is associated with multiple intents, include them
              here. The last intent in the list is what the user sees when they

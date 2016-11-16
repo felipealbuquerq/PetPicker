@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.PetParcel;
-import com.dinosilvestro.petpicker.ui.PetDetailActivity;
+import com.dinosilvestro.petpicker.ui.activities.PetDetailActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

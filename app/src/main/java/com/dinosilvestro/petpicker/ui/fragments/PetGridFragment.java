@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.ui;
+package com.dinosilvestro.petpicker.ui.fragments;
 
 
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.ui;
+package com.dinosilvestro.petpicker.ui.fragments;
 
 
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.dinosilvestro.petpicker.adapters.ShelterAdapter;
 import com.dinosilvestro.petpicker.fetch.FetchData;
 import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.ShelterParcel;
+import com.dinosilvestro.petpicker.ui.activities.MainActivity;
 
 import java.util.Arrays;
 

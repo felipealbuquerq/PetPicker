@@ -22,7 +22,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -35,20 +35,20 @@
         </activity>
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.ShelterListActivity"
+            android:name=".ui.activities.ShelterListActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.ShelterDetailActivity"
+            android:name=".ui.activities.ShelterDetailActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.PetGridActivity"
+            android:name=".ui.activities.PetGridActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.PetDetailActivity"
+            android:name=".ui.activities.PetDetailActivity"
             android:screenOrientation="portrait"/>
 
         <provider
@@ -58,7 +58,7 @@
             android:syncable="true"/>
 
         <activity
-            android:name=".ui.PetPicksGridActivity"
+            android:name=".ui.activities.PetPicksGridActivity"
             android:screenOrientation="portrait"/>
 
         <receiver

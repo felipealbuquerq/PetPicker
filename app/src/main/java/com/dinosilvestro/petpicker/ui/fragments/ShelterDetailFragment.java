@@ -1,4 +1,4 @@
-package com.dinosilvestro.petpicker.ui;
+package com.dinosilvestro.petpicker.ui.fragments;
 
 
 import android.content.Intent;
@@ -16,6 +16,7 @@ import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.FetchData;
 import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.PetParcel;
+import com.dinosilvestro.petpicker.ui.activities.PetGridActivity;
 
 /**
  * A simple {@link Fragment} subclass.
