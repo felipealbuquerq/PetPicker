@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.ui.fragments.DualPaneFragment;
 import com.dinosilvestro.petpicker.ui.fragments.ShelterListFragment;
 
 public class ShelterListActivity extends AppCompatActivity {
@@ -15,9 +16,19 @@ public class ShelterListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new ShelterListFragment())
-                .commit();
+
+        // Checking to see if user is using a tablet
+        boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+
+        if (!isTablet) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new ShelterListFragment())
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new DualPaneFragment())
+                    .commit();
+        }
     }
 
     @Override

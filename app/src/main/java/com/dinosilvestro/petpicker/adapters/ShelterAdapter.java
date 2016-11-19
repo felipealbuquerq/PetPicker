@@ -2,6 +2,9 @@ package com.dinosilvestro.petpicker.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.ShelterParcel;
 import com.dinosilvestro.petpicker.ui.activities.ShelterDetailActivity;
+import com.dinosilvestro.petpicker.ui.fragments.ShelterDetailFragment;
 
 public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterAdapterViewHolder> {
 
@@ -77,16 +81,40 @@ public class ShelterAdapter extends RecyclerView.Adapter<ShelterAdapter.ShelterA
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(mContext, ShelterDetailActivity.class);
-            intent.putExtra(Keys.SHELTER_ID, mId);
-            intent.putExtra(Keys.SHELTER_NAME, mName);
-            intent.putExtra(Keys.SHELTER_PHONE, mPhone);
-            intent.putExtra(Keys.SHELTER_EMAIL, mEmail);
-            intent.putExtra(Keys.SHELTER_ADDRESS, mAddress);
-            intent.putExtra(Keys.SHELTER_CITY, mCity);
-            intent.putExtra(Keys.SHELTER_STATE, mState);
-            intent.putExtra(Keys.SHELTER_ZIP, mZip);
-            mContext.startActivity(intent);
+
+            // Checking to see if user is using a tablet
+            boolean isTablet = mContext.getResources().getBoolean(R.bool.is_tablet);
+
+            if (!isTablet) {
+                Intent intent = new Intent(mContext, ShelterDetailActivity.class);
+                intent.putExtra(Keys.SHELTER_ID, mId);
+                intent.putExtra(Keys.SHELTER_NAME, mName);
+                intent.putExtra(Keys.SHELTER_PHONE, mPhone);
+                intent.putExtra(Keys.SHELTER_EMAIL, mEmail);
+                intent.putExtra(Keys.SHELTER_ADDRESS, mAddress);
+                intent.putExtra(Keys.SHELTER_CITY, mCity);
+                intent.putExtra(Keys.SHELTER_STATE, mState);
+                intent.putExtra(Keys.SHELTER_ZIP, mZip);
+                mContext.startActivity(intent);
+            } else {
+                FragmentManager fragmentManager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                ShelterDetailFragment shelterDetailFragment = new ShelterDetailFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(Keys.SHELTER_ID, mId);
+                bundle.putString(Keys.SHELTER_NAME, mName);
+                bundle.putString(Keys.SHELTER_PHONE, mPhone);
+                bundle.putString(Keys.SHELTER_EMAIL, mEmail);
+                bundle.putString(Keys.SHELTER_ADDRESS, mAddress);
+                bundle.putString(Keys.SHELTER_CITY, mCity);
+                bundle.putString(Keys.SHELTER_STATE, mState);
+                bundle.putString(Keys.SHELTER_ZIP, mZip);
+                shelterDetailFragment.setArguments(bundle);
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.rightPlaceholder, shelterDetailFragment)
+                        .commit();
+            }
         }
 
         public String trimShelterName(ShelterParcel shelters) {

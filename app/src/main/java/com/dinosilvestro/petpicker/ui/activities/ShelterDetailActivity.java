@@ -11,12 +11,11 @@ import com.dinosilvestro.petpicker.ui.fragments.ShelterDetailFragment;
 
 public class ShelterDetailActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new ShelterDetailFragment())
                 .commit();

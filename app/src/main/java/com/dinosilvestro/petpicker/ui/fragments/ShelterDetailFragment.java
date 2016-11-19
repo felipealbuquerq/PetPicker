@@ -52,9 +52,13 @@ public class ShelterDetailFragment extends Fragment {
         ImageButton mPhoneImageButton = (ImageButton) rootView.findViewById(R.id.phoneButton);
         ImageButton mNavigationImageButton = (ImageButton) rootView.findViewById(R.id.navigateButton);
 
+        // Currently used for phone mode
         Intent intent = getActivity().getIntent();
 
-        if (intent != null) {
+        // Arguments passed in for dual-pane tablet mode
+        Bundle bundle = this.getArguments();
+
+        if (intent.getStringExtra(Keys.SHELTER_ID) != null) {
 
             mShelterId = intent.getStringExtra(Keys.SHELTER_ID);
 
@@ -117,6 +121,65 @@ public class ShelterDetailFragment extends Fragment {
             if (!zip.contains("{}")) { // Check to make sure this field is not empty
                 mZipTextView.setText(String.format("ZIP: %s", zip));
             }
+
+        } else if (bundle.getString(Keys.SHELTER_ID) != null) {
+
+            mShelterId = bundle.getString(Keys.SHELTER_ID);
+
+            mPhone = bundle.getString(Keys.SHELTER_PHONE);
+            if (!mPhone.contains("{}")) { // Check to make sure this field is not empty
+                mPhoneTextView.setText(String.format("PHONE: %s", mPhone));
+                // Click listener only works if a phone number is available
+                mPhoneImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialPhoneNumber(mPhone);
+                    }
+                });
+            }
+
+            mEmail = bundle.getString(Keys.SHELTER_EMAIL);
+            if (!mEmail.contains("{}")) { // Check to make sure this field is not empty
+                mEmailTextView.setText(String.format("EMAIL: %s", mEmail));
+                // Click listener only works if an email address is available
+                mEmailImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        composeEmail(mEmail);
+                    }
+                });
+            }
+
+            mAddress = bundle.getString(Keys.SHELTER_ADDRESS);
+            if (!mAddress.contains("{}")) { // Check to make sure this field is not empty
+                mAddressTextView.setText(String.format("ADDRESS: %s", mAddress));
+                // Click listener only works if an address is available
+                mNavigationImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String location = mAddress + " " + mCity + ", " + mState;
+                        Uri geolocation = Uri.parse("geo:0,0?q=" + location);
+                        showMap(geolocation);
+                    }
+                });
+            }
+
+            mCity = bundle.getString(Keys.SHELTER_CITY);
+            if (!mCity.contains("{}")) { // Check to make sure this field is not empty
+                mCityTextView.setText(String.format("CITY: %s", mCity));
+            }
+
+            mState = bundle.getString(Keys.SHELTER_STATE);
+            if (!mState.contains("{}")) { // Check to make sure this field is not empty
+                mStateTextView.setText(String.format("STATE: %s", mState));
+            }
+
+            String zip = bundle.getString(Keys.SHELTER_ZIP);
+            if (!zip.contains("{}")) { // Check to make sure this field is not empty
+                mZipTextView.setText(String.format("ZIP: %s", zip));
+            }
+        } else {
+            mAddressTextView.setText("Select a shelter on the left to see more details");
         }
 
         FetchData.getPetData(mShelterId);
