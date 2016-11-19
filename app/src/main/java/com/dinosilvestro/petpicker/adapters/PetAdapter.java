@@ -2,6 +2,9 @@ package com.dinosilvestro.petpicker.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.PetParcel;
 import com.dinosilvestro.petpicker.ui.activities.PetDetailActivity;
+import com.dinosilvestro.petpicker.ui.fragments.PetDetailFragment;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -98,17 +102,42 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetAdapterViewHo
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(mContext, PetDetailActivity.class);
-            intent.putExtra(Keys.PET_ID, mId);
-            intent.putExtra(Keys.PET_NAME, mName);
-            intent.putExtra(Keys.PET_STATUS, mStatus);
-            intent.putExtra(Keys.PET_SEX, mSex);
-            intent.putExtra(Keys.PET_SIZE, mSize);
-            intent.putExtra(Keys.PET_AGE, mAge);
-            intent.putExtra(Keys.PET_ANIMAL, mAnimal);
-            intent.putExtra(Keys.PET_DESCRIPTION, mDescription);
-            intent.putExtra(Keys.PET_MEDIA, mMedia);
-            mContext.startActivity(intent);
+
+            // Checking to see if user is using a tablet
+            boolean isTablet = mContext.getResources().getBoolean(R.bool.is_tablet);
+
+            if (!isTablet) {
+                Intent intent = new Intent(mContext, PetDetailActivity.class);
+                intent.putExtra(Keys.PET_ID, mId);
+                intent.putExtra(Keys.PET_NAME, mName);
+                intent.putExtra(Keys.PET_STATUS, mStatus);
+                intent.putExtra(Keys.PET_SEX, mSex);
+                intent.putExtra(Keys.PET_SIZE, mSize);
+                intent.putExtra(Keys.PET_AGE, mAge);
+                intent.putExtra(Keys.PET_ANIMAL, mAnimal);
+                intent.putExtra(Keys.PET_DESCRIPTION, mDescription);
+                intent.putExtra(Keys.PET_MEDIA, mMedia);
+                mContext.startActivity(intent);
+            } else {
+                FragmentManager fragmentManager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                PetDetailFragment petDetailFragment = new PetDetailFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(Keys.PET_ID, mId);
+                bundle.putString(Keys.PET_NAME, mName);
+                bundle.putString(Keys.PET_STATUS, mStatus);
+                bundle.putString(Keys.PET_SEX, mSex);
+                bundle.putString(Keys.PET_SIZE, mSize);
+                bundle.putString(Keys.PET_AGE, mAge);
+                bundle.putString(Keys.PET_ANIMAL, mAnimal);
+                bundle.putString(Keys.PET_DESCRIPTION, mDescription);
+                bundle.putString(Keys.PET_MEDIA, mMedia);
+                petDetailFragment.setArguments(bundle);
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.rightPlaceholder, petDetailFragment)
+                        .commit();
+            }
         }
     }
 }

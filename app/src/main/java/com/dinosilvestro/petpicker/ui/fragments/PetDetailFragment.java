@@ -91,8 +91,13 @@ public class PetDetailFragment extends Fragment {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
 
+        // Currently used for phone mode
         Intent intent = getActivity().getIntent();
-        if (intent != null) {
+
+        // Arguments passed in for dual-pane tablet mode
+        Bundle bundle = this.getArguments();
+
+        if (intent.getStringExtra(Keys.PET_ID) != null) {
 
             mPetId = intent.getStringExtra(Keys.PET_ID);
 
@@ -148,7 +153,77 @@ public class PetDetailFragment extends Fragment {
                         }
                     });
 
+            // Determine whether the user has picked this pet before and change the favorite fab
+            // to reflect that
             isPickedPet();
+
+        } else if (bundle.getString(Keys.PET_ID) != null) {
+
+            mProgressBar.setVisibility(View.VISIBLE);
+            mPickActionButton.setVisibility(View.VISIBLE);
+
+            mPetId = bundle.getString(Keys.PET_ID);
+
+            mPetName = bundle.getString(Keys.PET_NAME);
+            if (!mPetName.contains("{}")) { // Check to make sure this field is not empty
+                getActivity().setTitle(mPetName);
+            }
+
+            mPetStatus = bundle.getString(Keys.PET_STATUS);
+            if (!mPetStatus.contains("{}")) { // Check to make sure this field is not empty
+                mStatusTextView.setText(String.format("STATUS: %s", mPetStatus));
+            }
+
+            mPetSex = bundle.getString(Keys.PET_SEX);
+            if (!mPetSex.contains("{}")) { // Check to make sure this field is not empty
+                mSexTextView.setText(String.format("SEX: %s", mPetSex));
+            }
+
+            mPetSize = bundle.getString(Keys.PET_SIZE);
+            if (!mPetSize.contains("{}")) { // Check to make sure this field is not empty
+                mSizeTextView.setText(String.format("SIZE: %s", mPetSize));
+            }
+
+            mPetAge = bundle.getString(Keys.PET_AGE);
+            if (!mPetAge.contains("{}")) { // Check to make sure this field is not empty
+                mAgeTextView.setText(String.format("AGE: %s", mPetAge));
+            }
+
+            mPetAnimal = bundle.getString(Keys.PET_ANIMAL);
+            if (!mPetAnimal.contains("{}")) { // Check to make sure this field is not empty
+                mAnimalTextView.setText(String.format("ANIMAL: %s", mPetAnimal));
+            }
+
+            mPetDescription = bundle.getString(Keys.PET_DESCRIPTION);
+            if (!mPetDescription.contains("{}")) { // Check to make sure this field is not empty
+                mDescriptionTextView.setText(String.format("DESCRIPTION: %s", mPetDescription));
+            }
+
+            mPetMedia = bundle.getString(Keys.PET_MEDIA);
+
+            Picasso.with(getActivity())
+                    .load(bundle.getString(Keys.PET_MEDIA))
+                    .into(mMediaImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            // In the rare case that a pet does not have a pic, display app icon
+                            mMediaImageView.setImageResource(R.mipmap.ic_launcher);
+                        }
+                    });
+
+            // Determine whether the user has picked this pet before and change the favorite fab
+            // to reflect that
+            isPickedPet();
+
+        } else {
+            mSizeTextView.setText("Select a pet on the left to see more details");
+            mProgressBar.setVisibility(View.INVISIBLE);
+            mPickActionButton.setVisibility(View.INVISIBLE);
         }
 
         mPickActionButton.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dinosilvestro.petpicker.R;
+import com.dinosilvestro.petpicker.ui.fragments.DualPanePetFragment;
 import com.dinosilvestro.petpicker.ui.fragments.PetGridFragment;
 
 public class PetGridActivity extends AppCompatActivity {
@@ -15,9 +16,19 @@ public class PetGridActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new PetGridFragment())
-                .commit();
+
+        // Checking to see if user is using a tablet
+        boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+
+        if (!isTablet) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new PetGridFragment())
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new DualPanePetFragment())
+                    .commit();
+        }
     }
 
     @Override

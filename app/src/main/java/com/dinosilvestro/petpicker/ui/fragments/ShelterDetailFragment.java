@@ -126,6 +126,13 @@ public class ShelterDetailFragment extends Fragment {
 
             mShelterId = bundle.getString(Keys.SHELTER_ID);
 
+            String name = bundle.getString(Keys.SHELTER_NAME);
+            if (!name.contains("{}")) { // Check to make sure this field is not empty
+                getActivity().setTitle(name);
+            }
+
+            mNewShelterName = name;
+
             mPhone = bundle.getString(Keys.SHELTER_PHONE);
             if (!mPhone.contains("{}")) { // Check to make sure this field is not empty
                 mPhoneTextView.setText(String.format("PHONE: %s", mPhone));

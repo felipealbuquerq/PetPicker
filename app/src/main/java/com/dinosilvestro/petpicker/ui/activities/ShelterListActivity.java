@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dinosilvestro.petpicker.R;
-import com.dinosilvestro.petpicker.ui.fragments.DualPaneFragment;
+import com.dinosilvestro.petpicker.ui.fragments.DualPaneShelterFragment;
 import com.dinosilvestro.petpicker.ui.fragments.ShelterListFragment;
 
 public class ShelterListActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class ShelterListActivity extends AppCompatActivity {
                     .commit();
         } else {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new DualPaneFragment())
+                    .replace(R.id.container, new DualPaneShelterFragment())
                     .commit();
         }
     }

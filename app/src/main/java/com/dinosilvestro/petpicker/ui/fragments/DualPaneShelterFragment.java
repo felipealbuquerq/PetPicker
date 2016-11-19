@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.dinosilvestro.petpicker.R;
 
-public class DualPaneFragment extends Fragment {
+public class DualPaneShelterFragment extends Fragment {
 
-    public DualPaneFragment() {
+    public DualPaneShelterFragment() {
         // Required empty public constructor
     }
 
@@ -25,21 +25,21 @@ public class DualPaneFragment extends Fragment {
         FragmentManager fragmentManager = getChildFragmentManager();
 
         // Left pane (list of shelters)
-        ShelterListFragment ingredientsFragment = new ShelterListFragment();
+        ShelterListFragment shelterListFragment = new ShelterListFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.leftPlaceholder, ingredientsFragment)
+                .replace(R.id.leftPlaceholder, shelterListFragment)
                 .commit();
 
 
         // Right pane (details of shelter)
-        ShelterDetailFragment directionsFragment = new ShelterDetailFragment();
+        ShelterDetailFragment shelterDetailFragment = new ShelterDetailFragment();
 
         // Empty bundle
         Bundle bundle = new Bundle();
-        directionsFragment.setArguments(bundle);
+        shelterDetailFragment.setArguments(bundle);
 
         fragmentManager.beginTransaction()
-                .replace(R.id.rightPlaceholder, directionsFragment)
+                .replace(R.id.rightPlaceholder, shelterDetailFragment)
                 .commit();
 
         return view;
