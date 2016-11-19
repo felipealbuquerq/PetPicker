@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.FetchData;
@@ -18,9 +19,6 @@ import com.dinosilvestro.petpicker.fetch.Keys;
 import com.dinosilvestro.petpicker.parcels.PetParcel;
 import com.dinosilvestro.petpicker.ui.activities.PetGridActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ShelterDetailFragment extends Fragment {
 
     private String mShelterId;
@@ -186,7 +184,7 @@ public class ShelterDetailFragment extends Fragment {
                 mZipTextView.setText(String.format("ZIP: %s", zip));
             }
         } else {
-            mAddressTextView.setText("Select a shelter on the left to see more details");
+            mAddressTextView.setText(R.string.shelter_right_pane_default_text);
         }
 
         FetchData.getPetData(mShelterId);
@@ -194,12 +192,19 @@ public class ShelterDetailFragment extends Fragment {
         mGetPetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PetGridActivity.class);
-                intent.putExtra(Keys.GET_PETS, PetParcel.getPets());
-                intent.putExtra(Keys.NEW_SHELTER_NAME, mNewShelterName);
-                startActivity(intent);
+                // If there isn't any pet data available for the selected shelter...
+                if (!FetchData.mPetFlag) {
+                    // ...display a toast to let the user know.
+                    Toast.makeText(getActivity(), "There are no pets available for this location.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), PetGridActivity.class);
+                    intent.putExtra(Keys.GET_PETS, PetParcel.getPets());
+                    intent.putExtra(Keys.NEW_SHELTER_NAME, mNewShelterName);
+                    startActivity(intent);
+                }
             }
         });
+
 
         return rootView;
     }

@@ -221,7 +221,7 @@ public class PetDetailFragment extends Fragment {
             isPickedPet();
 
         } else {
-            mSizeTextView.setText("Select a pet on the left to see more details");
+            mSizeTextView.setText(R.string.pet_right_pane_default_text);
             mProgressBar.setVisibility(View.INVISIBLE);
             mPickActionButton.setVisibility(View.INVISIBLE);
         }

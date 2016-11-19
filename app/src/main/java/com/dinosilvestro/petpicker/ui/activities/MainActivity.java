@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.Constants;
@@ -62,12 +63,19 @@ public class MainActivity extends AppCompatActivity implements
                 .addApi(LocationServices.API)
                 .build();
 
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
-                intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
-                startActivity(intent);
+                // If there isn't any shelter data available...
+                if (!FetchData.mShelterFlag) {
+                    // ...display a toast informing the user.
+                    Toast.makeText(MainActivity.this, "There are no shelters available right now. Please try again later.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
+                    intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
+                    startActivity(intent);
+                }
             }
         });
     }

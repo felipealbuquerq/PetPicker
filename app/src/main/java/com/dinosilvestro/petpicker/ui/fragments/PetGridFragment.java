@@ -39,7 +39,9 @@ public class PetGridFragment extends Fragment {
         CardView mEmptyCardView = (CardView) rootView.findViewById(R.id.emptyCardView);
         TextView mEmptyTextView = (TextView) rootView.findViewById(R.id.petGridEmptyTextView);
 
+        // If there isn't any pet data available for the selected shelter...
         if (!FetchData.mPetFlag) {
+            // ...display a message saying there are no pets available.
             mEmptyCardView.setVisibility(View.VISIBLE);
             mEmptyTextView.setText(R.string.empty_adoption_grid_text);
         } else {
