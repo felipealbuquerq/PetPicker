@@ -64,9 +64,13 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ![Phone Shelter Detail Layout](http://i.imgur.com/nM6bKT2.png)
 
+![Tablet Shelter Dual Pane](http://i.imgur.com/WzpTR1P.png)
+
 ![Phone Pet Grid Layout](http://i.imgur.com/RLDI0d8.jpg)
 
 ![Phone Pet Detail Layout](http://i.imgur.com/uYaUimL.jpg)
+
+![Tablet Pet Dual Pane](http://i.imgur.com/KyQG9kt.jpg)
 
 ![Phone Pet Picks Layout](http://i.imgur.com/MNhovKW.jpg)
 
@@ -75,5 +79,7 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 ![Phone Quick Action Showcase](http://i.imgur.com/zmCVIsX.png)
 
 ![Phone Quick Action Icon Showcase](http://i.imgur.com/07lNrLL.png)
+
+
 
 
