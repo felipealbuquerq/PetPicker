@@ -4,7 +4,8 @@
 
 - Published an app to the Play Store that leverages a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
 - Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets.
-- Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
+- Utilized material design principles and fragments to add a special master-detail layout to support tablets. 
+- Added a widget for the home screen for users to track the availability of picked pets, as well as app shortcuts to support the latest release of Android Nougat 7.1.
 
 ## Implementations (Stage 1 - Design)
 
