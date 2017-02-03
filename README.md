@@ -4,7 +4,8 @@
 
 - Published an app to the Play Store that leverages a REST API and Google Location Services to locate nearby pet shelters and the pets that are adoptable at each shelter.
 - Implemented a content provider for data persistence, as well as Firebase analytics to track the status of picked pets.
-- Utilized Material design principles and added a widget for the home screen for users to track the availability of picked pets.
+- Utilized material design principles and fragments to add a special master-detail layout to support tablets. 
+- Added a widget for the home screen for users to track the availability of picked pets, as well as the ability to share pet picks, and app shortcuts to support the latest release of Android Nougat 7.1.
 
 ## Implementations (Stage 1 - Design)
 
@@ -64,9 +65,13 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 
 ![Phone Shelter Detail Layout](http://i.imgur.com/nM6bKT2.png)
 
+![Tablet Shelter Dual Pane](http://i.imgur.com/WzpTR1P.png)
+
 ![Phone Pet Grid Layout](http://i.imgur.com/RLDI0d8.jpg)
 
 ![Phone Pet Detail Layout](http://i.imgur.com/uYaUimL.jpg)
+
+![Tablet Pet Dual Pane](http://i.imgur.com/KyQG9kt.jpg)
 
 ![Phone Pet Picks Layout](http://i.imgur.com/MNhovKW.jpg)
 
@@ -75,5 +80,23 @@ Simply download or fork this repository and import into Android Studio. Add a [P
 ![Phone Quick Action Showcase](http://i.imgur.com/zmCVIsX.png)
 
 ![Phone Quick Action Icon Showcase](http://i.imgur.com/07lNrLL.png)
+
+## License
+
+Copyright 2017 Dino Silvestro
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
 
 
