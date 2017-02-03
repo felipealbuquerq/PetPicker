@@ -35,9 +35,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -45,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements
     private static final int REQUEST_LOCATION = 101;
     public static String mDefaultZipCode;
     protected Location mLastLocation;
-    @BindView(R.id.getSheltersButtonwithGps)
     Button mButton;
     private GoogleApiClient mGoogleApiClient;
 
@@ -55,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        mButton = (Button) findViewById((R.id.getSheltersButtonwithGps));
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
