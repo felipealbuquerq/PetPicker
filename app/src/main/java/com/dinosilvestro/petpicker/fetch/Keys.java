@@ -30,4 +30,7 @@ public class Keys {
 
     // Key to pass shelter name into pet grid activity's actionbar
     public static final String NEW_SHELTER_NAME = "NEW_SHELTER_NAME";
+
+    // Request code for permission to write to external storage
+    public static final int PERMISSION_WRITE_EXTERNAL_STORAGE = 1;
 }
