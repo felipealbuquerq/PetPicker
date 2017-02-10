@@ -1,7 +1,9 @@
 package com.dinosilvestro.petpicker.fetch;
 
 public class Keys {
-    public static final String apiKey = ""; //Please place your Pet Finder Api Key here
+
+    //Please place your Pet Finder Api Key here
+    public static final String apiKey = "";
 
     // Keys for shelter information
     public static final String GET_SHELTERS = "GET_SHELTERS";

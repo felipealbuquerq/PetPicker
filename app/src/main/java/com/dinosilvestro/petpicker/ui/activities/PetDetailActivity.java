@@ -1,15 +1,19 @@
 package com.dinosilvestro.petpicker.ui.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.ui.fragments.PetDetailFragment;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 public class PetDetailActivity extends AppCompatActivity {
 
@@ -36,16 +40,39 @@ public class PetDetailActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menu_item_share:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(PetDetailFragment.getPetMedia()));
-                sendIntent.setType("image/jpeg");
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "I found " + PetDetailFragment.getPetName() + " on the Pet Picker app.");
-                Toast.makeText(this, "Works best with the default Messenger app", Toast.LENGTH_SHORT).show();
-                startActivity(Intent.createChooser(sendIntent, "Share pet pick to..."));
+                handlePetPick();
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
+    }
+
+    // Use the Picasso library to save and share the selected pet
+    private void handlePetPick() {
+        Picasso.with(this).load(PetDetailFragment.getPetMedia()).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(),
+                        bitmap, PetDetailFragment.getPetMedia(),
+                        "Pet Pick " + PetDetailFragment.getPetName()));
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "I found " + PetDetailFragment.getPetName() + " on the Pet Picker app.");
+                shareIntent.setType("image/*");
+                startActivity(Intent.createChooser(shareIntent, "Share pet pick to..."));
+
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+                //Toast.makeText(mContext, R.string.unable_to_download_meme_toast_text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
     }
 }
