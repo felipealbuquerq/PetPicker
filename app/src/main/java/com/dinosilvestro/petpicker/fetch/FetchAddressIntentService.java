@@ -60,6 +60,10 @@ public class FetchAddressIntentService extends IntentService {
                     "Latitude = " + location.getLatitude() +
                     ", Longitude = " +
                     location.getLongitude(), illegalArgumentException);
+        } catch (NullPointerException nullPointerException) {
+            // Catch case of address being null.
+            errorMessage = getString(R.string.null_address_text);
+            Log.e(TAG, errorMessage, nullPointerException);
         }
 
         // Handle case where no address was found.

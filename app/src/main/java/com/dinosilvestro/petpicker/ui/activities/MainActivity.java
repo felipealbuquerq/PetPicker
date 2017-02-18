@@ -49,7 +49,13 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        getSupportActionBar().hide();
+
+        // Make sure action bar is actually there, hide it if it is.
+        // If not, don't worry about it.
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         setContentView(R.layout.activity_main);
 
         mButton = (Button) findViewById((R.id.getSheltersButtonwithGps));

@@ -24,4 +24,5 @@
     <string name="shortcut_label">My Pet Picks</string>
     <string name="shelter_right_pane_default_text">Select a shelter on the left to see more details</string>
     <string name="pet_right_pane_default_text">Select a pet on the left to see more details</string>
+    <string name="null_address_text">Address is null</string>
 </resources>
