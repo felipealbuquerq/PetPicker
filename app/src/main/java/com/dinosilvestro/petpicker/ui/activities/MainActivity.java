@@ -17,11 +17,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.dinosilvestro.petpicker.R;
 import com.dinosilvestro.petpicker.fetch.Constants;
@@ -42,38 +42,40 @@ public class MainActivity extends AppCompatActivity implements
     private static final int REQUEST_LOCATION = 101;
     public static String mDefaultZipCode;
     protected Location mLastLocation;
-    Button mButton;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 
         // Make sure action bar is actually there, hide it if it is.
         // If not, don't worry about it.
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
         setContentView(R.layout.activity_main);
 
-        mButton = (Button) findViewById((R.id.getSheltersButtonwithGps));
+        Button findSheltersButton = (Button) findViewById((R.id.getSheltersButtonwithGps));
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
 
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        findSheltersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // If there isn't any shelter data available...
                 if (!FetchData.mShelterFlag) {
-                    // ...display a toast informing the user.
-                    Toast.makeText(MainActivity.this, "There are no shelters available right now. Please try again later.", Toast.LENGTH_SHORT).show();
+                    // Try to get the user's location again
+                    fetchLastLocation();
                 } else {
                     Intent intent = new Intent(getApplicationContext(), ShelterListActivity.class);
                     intent.putExtra(Keys.GET_SHELTERS, ShelterParcel.getShelters());
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
+    // Check to make sure user is connected to the internet
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -106,11 +109,11 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION);
         } else {
             // permission has been granted, continue as usual
@@ -120,14 +123,26 @@ public class MainActivity extends AppCompatActivity implements
 
     private void fetchLastLocation() {
         if (isNetworkAvailable() && mGoogleApiClient.isConnected()) {
-            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            startIntentService();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Test Tag", "Location Permission has not been granted");
+            } else {
+                // Get the last known location of the user
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-            // In rare cases when the last location is not found - request it
-            if (mLastLocation == null) {
-                LocationRequest locationRequest = LocationRequest.create();
-                locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, this);
+                // In cases when the last location is not found - request it
+                if (mLastLocation == null) {
+                    LocationRequest locationRequest = new LocationRequest();
+                    locationRequest.setInterval(10000);
+                    locationRequest.setFastestInterval(5000);
+                    locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+                    // Start intent service with newly obtained last location
+                    startIntentService();
+                } else {
+                    // Last location is already known. Start the intent service with that
+                    startIntentService();
+                }
             }
         }
     }
@@ -140,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements
                 fetchLastLocation();
             } else {
                 // Permission was denied or request was cancelled
-                denyLocationPermissionDialog();
+                requestManualLocationDialog();
             }
         }
     }
@@ -155,9 +170,9 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    public void denyLocationPermissionDialog() {
+    public void requestManualLocationDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Location Permission Denied");
+        alertDialog.setTitle("Manual Location Entry");
         alertDialog.setMessage("Please enter a valid zip/postal code to continue.");
         final EditText input = new EditText(MainActivity.this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -177,11 +192,19 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     protected void startIntentService() {
-        Intent intent = new Intent(this, FetchAddressIntentService.class);
-        AddressResultReceiver resultReceiver = new AddressResultReceiver(new Handler());
-        intent.putExtra(Constants.RECEIVER, resultReceiver);
-        intent.putExtra(Constants.LOCATION_DATA_EXTRA, mLastLocation);
-        startService(intent);
+        // We have a last location, start intent service
+        if (mLastLocation != null) {
+            Intent intent = new Intent(this, FetchAddressIntentService.class);
+            AddressResultReceiver resultReceiver = new AddressResultReceiver(new Handler());
+            intent.putExtra(Constants.RECEIVER, resultReceiver);
+            intent.putExtra(Constants.LOCATION_DATA_EXTRA, mLastLocation);
+            startService(intent);
+        } else {
+            // Location cannot be determined
+            // No need to start service
+            // Fall back to manual location entry
+            requestManualLocationDialog();
+        }
     }
 
     @Override
@@ -190,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements
         startIntentService();
     }
 
-    class AddressResultReceiver extends ResultReceiver {
-        public AddressResultReceiver(Handler handler) {
+    private class AddressResultReceiver extends ResultReceiver {
+        AddressResultReceiver(Handler handler) {
             super(handler);
         }
 
