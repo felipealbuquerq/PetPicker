@@ -187,7 +187,6 @@
             <ext name="defaultArtifacts" type="org.gradle.api.internal.plugins.DefaultArtifactPublicationSet" />
             <ext name="reporting" type="org.gradle.api.reporting.ReportingExtension" />
             <ext name="android" type="com.android.build.gradle.AppExtension" />
-            <ext name="apt" type="com.neenbedankt.gradle.androidapt.AndroidAptExtension" />
             <task name="projects" type="org.gradle.api.tasks.diagnostics.ProjectReportTask">Displays the sub-projects of project ':app'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
             <task name="resolveDebugDependencies" type="com.android.build.gradle.internal.tasks.ResolveDependenciesTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
             <task name="transformClassesAndResourcesWithProguardForRelease" type="com.android.build.gradle.internal.pipeline.TransformTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
@@ -378,14 +377,12 @@
             <conf name="androidJacocoAnt" visible="false">The Jacoco ant tasks to use to get execute Gradle tasks.</conf>
             <conf name="androidTestAnnotationProcessor" visible="false">Classpath for the annotation processor for 'androidTest'.</conf>
             <conf name="androidTestApk" visible="false">Classpath packaged with the compiled 'androidTest' classes.</conf>
-            <conf name="androidTestApt" />
             <conf name="androidTestCompile" visible="false">Classpath for compiling the androidTest sources.</conf>
             <conf name="androidTestJackPlugin" visible="false">Classpath for the 'androidTest' Jack plugins.</conf>
             <conf name="androidTestProvided" visible="false">Classpath for only compiling the androidTest sources.</conf>
             <conf name="androidTestWearApp" visible="false">Link to a wear app to embed for object 'androidTest'.</conf>
             <conf name="annotationProcessor" visible="false">Classpath for the annotation processor for 'main'.</conf>
             <conf name="apk" visible="false">Classpath packaged with the compiled 'main' classes.</conf>
-            <conf name="apt" />
             <conf name="archives">Configuration for archive artifacts.</conf>
             <conf name="compile" visible="false">Classpath for compiling the main sources.</conf>
             <conf name="debugAndroidTestWearBundling">Resolved Configuration for wear app bundling for variant: debugAndroidTest</conf>
@@ -412,7 +409,6 @@
             <conf name="releaseWearBundling">Resolved Configuration for wear app bundling for variant: release</conf>
             <conf name="testAnnotationProcessor" visible="false">Classpath for the annotation processor for 'test'.</conf>
             <conf name="testApk" visible="false">Classpath packaged with the compiled 'test' classes.</conf>
-            <conf name="testApt" />
             <conf name="testCompile" visible="false">Classpath for compiling the test sources.</conf>
             <conf name="testDebugAnnotationProcessor" visible="false">Classpath for the annotation processor for 'testDebug'.</conf>
             <conf name="testDebugApk" visible="false">Classpath packaged with the compiled 'testDebug' classes.</conf>
